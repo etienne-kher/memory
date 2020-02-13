@@ -161,6 +161,10 @@ if(!isset($levelbis)){
     $levelbis=$_GET['levelbis'];
 }
 
+if(!isset($levelbis2)){
+    $levelbis2=$_GET['levelbis2'];
+}
+
 if(!isset($level)){
     $level=0;
 }
@@ -169,31 +173,42 @@ else{
 }
 $n=1;
 ?>
-<section class="aligntab"> <table>
-    <th>TOP 10</th>
-    <th>---TIME---</th>
-    <th>
-        <ul id="menu-accordeon">
-            <li><a href="#">Level</a>
-                <ul>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=1&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 1</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=2&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 2</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=3&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 3</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=4&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 4</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=5&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 5</a></li>
+<section class="aligntab">
+    <table>
+        <th>TOP 10</th>
+        <th>---TIME---</th>
+        <th>
+            <ul id="menu-accordeon">
+                <li><a href="#">Level</a>
+                    <ul>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=1&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                1</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=2&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                2</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=3&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                3</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=4&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                4</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=5&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                5</a></li>
 
 
-                </ul>
-            </li>
-    </th>
-    <?php
+                    </ul>
+                </li>
+        </th>
+        <?php
 while ($n<=10){
     echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$temps'.'</td></tr>';
     ++$n;
 }?>
-</table>
-<br><br><br><br><br>
-<?php
+    </table>
+    <br><br><br><br>
+    <?php
 
 
 if($_GET['tab']=='1'){
@@ -206,8 +221,9 @@ if($_GET['tab']=='1'){
     }
 }
 ?>
-<br><br>
-<?php
+    <br><br>
+    <?php
+
 if($_GET['tabbis']=='2'){
     if($_GET['typebis']=="tentative"){
         echo 'TYPE '.$_GET['typebis'].'<br/>';
@@ -219,35 +235,113 @@ if($_GET['tabbis']=='2'){
         }
     }
 }
+?>
+    <br><br>
 
+    <?php
+if($_GET['tabbis2']=='3'){
+    if($_GET['typebis2']=="bestscore"){
+        echo 'TYPE '.$_GET['typebis2'].'<br/>';
+        if($levelbis2<=5){
+            echo 'LEVEL '.$levelbis2.'<br/>';
+            if(!isset($levelbis2)){
+                $levelbis2=0;
+            }
+        }
+    }
+}
 ?>
 
-<br>
-<!-- TEST PRINCIPALE TENTATIVE -->
-<?php
+    <form action="" method="post">
+        <SELECT name="nom" size="1">
+            <OPTION>time
+            <OPTION>tentative
+        </SELECT>
+        <SELECT name="level" size="1">
+            <OPTION>1
+            <OPTION>2
+            <OPTION>3
+            <OPTION>4
+            <OPTION>5
+        </SELECT>
+        <input type="submit" name="valider3">
+    </form>
+
+
+    <br>
+    <!-- TEST PRINCIPALE TENTATIVE -->
+    <?php
 
 $n=1;
 ?> <table>
-    <th>TOP 10</th>
-    <th>---TENTATIVE---</th>
-    <th>
-        <ul id="menu-accordeon">
-            <li><a href="#">Level</a>
-                <ul>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=1">Level 1</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=2">Level 2</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=3">Level 3</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=4">Level 4</a></li>
-                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=5">Level 5</a></li>
-                </ul>
-            </li>
-    </th>
-    <?php
+        <th>TOP 10</th>
+        <th>---TENTATIVE---</th>
+        <th>
+            <ul id="menu-accordeon">
+                <li><a href="#">Level</a>
+                    <ul>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=1&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                1</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=2&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                2</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=3&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                3</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=4&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                4</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=5&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                5</a></li>
+                    </ul>
+                </li>
+        </th>
+        <?php
 while ($n<=10){
     echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$temps'.'</td></tr>';
     ++$n;
 }?>
-</table>
+    </table>
+
+    <br>
+    <!-- TEST PRINCIPALE BESTSCORE -->
+
+    <?php
+
+$n=1;
+?> <table>
+        <th>TOP 10</th>
+        <th>---BESTSCORE---</th>
+        <th>
+            <ul id="menu-accordeon">
+                <li><a href="#">Level</a>
+                    <ul>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=1">Level
+                                1</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=2">Level
+                                2</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=3">Level
+                                3</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=4">Level
+                                4</a></li>
+                        <li><a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=5">Level
+                                5</a></li>
+                    </ul>
+                </li>
+        </th>
+        <?php
+while ($n<=10){
+    echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$temps'.'</td></tr>';
+    ++$n;
+}?>
+    </table>
 </section>
 
 <?php
