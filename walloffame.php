@@ -1,15 +1,17 @@
 <?php
 
 
-class TotalScore{
 
-    public $tentative="";
-    public $niveau="";
-    public $temps="";
+class User{
+
+    public $nb_cout;
+    public $level;
+    public $temps;
     public $login="";
+    public $id;
+    public $défi="";
     public $pasword="";
     public $connexion="";
-    public $password="";
 
 
     public function inscription($login,$password){
@@ -35,13 +37,17 @@ class TotalScore{
     public function connexion($login,$password){
 
         $connexion=mysqli_connect("Localhost","root","","memory");
-        $requete1="SELECT login,password FROM utilisateurs WHERE login='".$login."'";
+        $requete1="SELECT id,login,password FROM utilisateurs WHERE login='".$login."'";
         $query=mysqli_query($connexion,$requete1);
         $resultat=mysqli_fetch_all($query);
 
-        if($resultat[0][0]==$login and $resultat[0][1]==$password){
+        if($resultat[0][1]==$login and $resultat[0][2]==$password){
             session_start();
-            $this->login=$login;
+            $this->id=$resultat[0][0];
+            $id=$this->id;
+            var_dump($resultat);
+            echo 'Id= '.$id.'<br/>';
+            echo 'login= '.$login.'<br/>';
             echo '<br/>'.'VOUS ETES BIEN CONNECTEE'.'<br/>';
         }
         else{
@@ -55,18 +61,46 @@ class TotalScore{
     }
 
 
-    Public function scoretemps($tentative,$niveau,$temps) {
 
-        if(isset($tentative) and isset($niveau) and isset($temps)){
-            $this->tentative=$tentative;
-            $this->niveau=$niveau;
+    Public function scoreperso($défi,$level,$nb_cout,$temps) {
+
+
+        if(isset($défi) and isset($level) and isset($nb_cout) and isset($temps)){
+            $connexion=mysqli_connect("Localhost","root","","memory");
+            $requete1="SELECT * FROM score WHERE id=1";
+            $query=mysqli_query($connexion,$requete1);
+            $resultat=mysqli_fetch_all($query);
+            var_dump($resultat);
+
+            session_start();
+
+            $this->défi=$défi;
+            $this->level=$level;
             $this->temps=$temps;
+            $this->nb_cout=$nb_cout;
+            $id=$this->id;
+            $login=$this->login;
+            
+            
 
-            echo 'niveau = '.$niveau.'<br>';
-            echo 'tentative = '.$tentative.'<br>';
-            echo 'temps = '.$temps.'s'.'<br/>';
+            $connexion=mysqli_connect('localhost','root','','memory');
+            $requete="INSERT INTO score (temps,tentative,level,defi,id_utilisateur) VALUES ('".$temps."','".$nb_cout."','".$level."','".$défi."'.'".$id."') WHERE login='".$login."'";
+            $query=mysqli_query($connexion,$requete);
+            echo ($query);
+
+            echo '<br/>Défi = '.$défi.'<br>';
+            echo 'Level = '.$level.'<br>';
+            echo 'Nb_cout = '.$nb_cout.'<br/>';
+            echo 'Temps= '.$temps.'<br/>';
+            echo 'Id= '.$id.'<br/>';
+            echo 'login= '.$login.'<br/>';
+
         }
-    } 
+    }
+
+
+
+
 
 
 }
@@ -76,6 +110,9 @@ class TotalScore{
 
 
 
+?>
+
+<?php
 
 
 
@@ -87,9 +124,9 @@ class TotalScore{
 <link rel="stylesheet" href="walloffame.css">
 
 <?php
-$memory=new Totalscore;
+$memory=new User;
 if(isset($_POST['valider'])){
-    $memory->scoretemps($_POST['tentative'],$_POST['niveau'],$_POST['temps']);
+    $memory->scoreperso($_POST['défi'],$_POST['level'],$_POST['nb_cout'],$_POST['temps']);
 }
 
 // INSCRIPTION
@@ -129,7 +166,7 @@ if(isset($_POST['valider2'])){
         </form>
     </div>
     <?php 
-if(!empty($memory->login)){
+if(isset($memory->login)){
 
     echo '<div class="form">
         <br><br><br>
@@ -146,9 +183,13 @@ if(!empty($memory->login)){
         <!-- TEST -->
         Test
         <form action="" method="post">
-            <input type="text" name="tentative"><br>
-            <input type="text" name="niveau"><br>
-            <input type="text" name="temps"><br>
+            <SELECT type="text" name="défi" size="1">
+            <OPTION>TIME
+            <OPTION>TENTATIVE
+        </SELECT><br>
+            <input type="text" name="level" placeholder="level"><br>
+            <input type="text" name="nb_cout" placeholder="Nb_cout"><br>
+            <input type="text" name="temps" placeholder="Temps"><br>
             <input type="submit" name="valider">
         </form>
     </div>
