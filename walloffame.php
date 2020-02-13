@@ -45,14 +45,13 @@ class User{
             session_start();
             $this->id=$resultat[0][0];
             $id=$this->id;
-            var_dump($resultat);
-            echo 'Id= '.$id.'<br/>';
-            echo 'login= '.$login.'<br/>';
+            
             echo '<br/>'.'VOUS ETES BIEN CONNECTEE'.'<br/>';
         }
         else{
             echo '<br/>'.'LOGIN OU MOT DE PASSE INCORRECT'.'<br/>';
         }
+        
     }
 
     public function deconnecte(){
@@ -284,64 +283,9 @@ while ($n<=10){
     ?>
     </table>
     <br><br><br><br>
-    <?php
+   
 
-
-if($_GET['tab']=='1'){
-
-    if($_GET['type']=="time"){
-        echo 'TYPE '.$_GET['type'].'<br/>';
-        if($_GET['level']<=5){
-            echo 'LEVEL '.$_GET['level'].'<br/>';
-        }
-    }
-}
-?>
-    <br><br>
-    <?php
-
-if($_GET['tabbis']=='2'){
-    if($_GET['typebis']=="tentative"){
-        echo 'TYPE '.$_GET['typebis'].'<br/>';
-        if($levelbis<=5){
-            echo 'LEVEL '.$levelbis.'<br/>';
-            if(!isset($levelbis)){
-                $levelbis=0;
-            }
-        }
-    }
-}
-?>
-    <br><br>
-
-    <?php
-if($_GET['tabbis2']=='3'){
-    if($_GET['typebis2']=="bestscore"){
-        echo 'TYPE '.$_GET['typebis2'].'<br/>';
-        if($levelbis2<=5){
-            echo 'LEVEL '.$levelbis2.'<br/>';
-            if(!isset($levelbis2)){
-                $levelbis2=0;
-            }
-        }
-    }
-}
-?>
-
-    <form action="" method="post">
-        <SELECT name="nom" size="1">
-            <OPTION>time
-            <OPTION>tentative
-        </SELECT>
-        <SELECT name="level" size="1">
-            <OPTION>1
-            <OPTION>2
-            <OPTION>3
-            <OPTION>4
-            <OPTION>5
-        </SELECT>
-        <input type="submit" name="valider3">
-    </form>
+    
 
 
     <br>
