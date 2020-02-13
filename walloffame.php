@@ -45,7 +45,7 @@ class User{
             session_start();
             $this->id=$resultat[0][0];
             $id=$this->id;
-            
+            header('location:walloffame.php');
             echo '<br/>'.'VOUS ETES BIEN CONNECTEE'.'<br/>';
         }
         else{
@@ -65,9 +65,10 @@ class User{
 
 
         if(isset($défi) and isset($level) and isset($nb_cout) and isset($temps)){
+
             $connexion=mysqli_connect("Localhost","root","","memory");
-            $requete1="SELECT * FROM score WHERE id=1";
-            $query=mysqli_query($connexion,$requete1);
+            $requete2="SELECT * FROM utilisateur WHERE login='amine'";
+            $query=mysqli_query($connexion,$requete2);
             $resultat=mysqli_fetch_all($query);
             var_dump($resultat);
 
@@ -77,8 +78,8 @@ class User{
             $this->level=$level;
             $this->temps=$temps;
             $this->nb_cout=$nb_cout;
-            $id=$this->id;
             $login=$this->login;
+            $id=$this->id;
             
             
 
@@ -91,7 +92,7 @@ class User{
             echo 'Level = '.$level.'<br>';
             echo 'Nb_cout = '.$nb_cout.'<br/>';
             echo 'Temps= '.$temps.'<br/>';
-            echo 'Id= '.$id.'<br/>';
+            echo 'Id= '.$this->id.'<br/>';
             echo 'login= '.$login.'<br/>';
 
         }
@@ -244,6 +245,7 @@ $n=1;
                 </li>
         </th>
         <?php
+if(isset($_GET['tab'])){
 
 if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==1){
     $level=1;
@@ -260,17 +262,22 @@ if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==4){
 if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==5){
     $level=5;
 }
+}
     $connexion=mysqli_connect('localhost','root','','memory');
     $requete="SELECT login,temps,points FROM besttime WHERE level='".$level."' ORDER BY points DESC";
     $query=mysqli_query($connexion,$requete);
     $resultatlevel1=mysqli_fetch_all($query);
     $j=0;
 while ($n<=10){
-    $resultatlevel1[0][0];//Login
-    $resultatlevel1[0][1];//temps
-    $resultatlevel1[0][2];//points
+    
+    // $resultatlevel1[0][0];//Login
+    // $resultatlevel1[0][1];//temps
+    // $resultatlevel1[0][2];//points
     while($j<count($resultatlevel1)){
-        echo '<tr><td>'.'N°'.$n.'</td><td>'.$resultatlevel1[$j][0].'</td><td>'.'Time : '.$resultatlevel1[$j][1].' secondes -- '.$resultatlevel1[$j][2].' pts '.'</td></tr>';
+        $pts=$level/$resultatlevel1[$j][1];
+        $ptstotal=$pts*$level*10;
+        $ptstotal = number_format($ptstotal,2);
+        echo '<tr><td>'.'N°'.$n.'</td><td>'.'<b>'.$resultatlevel1[$j][0].'</b>'.'</td><td><b>'.$resultatlevel1[$j][1].'</b> secondes -------- <b> '.$ptstotal.'</b> pts '.'</td></tr>';
         ++$j;
         ++$n;
     }
@@ -320,6 +327,8 @@ $n=1;
         </th>
         <?php
 
+if(isset($_GET['tabbis'])){
+
 if($_GET['tabbis']=='2' and $_GET['typebis']=="tentative" and $_GET['levelbis']==1){
     $levelbis=1;
 }
@@ -335,17 +344,21 @@ if($_GET['tabbis']=='2' and $_GET['typebis']=="tentative" and $_GET['levelbis']=
 if($_GET['tabbis']=='2' and $_GET['typebis']=="tentative" and $_GET['levelbis']==5){
     $levelbis=5;
 }
+}
     $connexion=mysqli_connect('localhost','root','','memory');
     $requete1="SELECT login,nb_tentative,points FROM besttentative WHERE level='".$levelbis."' ORDER BY points DESC";
     $query1=mysqli_query($connexion,$requete1);
     $resultatlevel2=mysqli_fetch_all($query1);
     $k=0;
 while ($n<=10){    
-    $resultatlevel2[0][0];//Login
-    $resultatlevel2[0][1];//tentative
-    $resultatlevel2[0][2];//points
+    // $resultatlevel2[0][0];//Login
+    // $resultatlevel2[0][1];//tentative
+    // $resultatlevel2[0][2];//points
     while($k<count($resultatlevel2)){
-        echo '<tr><td>'.'N°'.$n.'</td><td>'.$resultatlevel2[$k][0].'</td><td>'.'Time : '.$resultatlevel2[$k][1].' coups --- '.$resultatlevel2[$k][2].' pts '.'</td></tr>';
+        $pts=$levelbis/$resultatlevel2[$k][1];
+        $ptstotal=$pts*$levelbis*10;
+        $ptstotal = number_format($ptstotal,2);
+        echo '<tr><td>'.'N°'.$n.'</td><td><b>'.$resultatlevel2[$k][0].'</b></td><td><b>'.$resultatlevel2[$k][1].'</b> coups -------------- <b>'.$ptstotal.'</b> pts '.'</td></tr>';
         ++$k;
         ++$n;
     }
@@ -390,6 +403,7 @@ $n=1;
                 </li>
         </th>
         <?php
+if(isset($_GET['tab'])){
 
 if($_GET['tabbis2']=='3' and $_GET['typebis2']=="bestscore" and $_GET['levelbis2']==1){
     $levelbis2=1;
@@ -406,16 +420,19 @@ if($_GET['tabbis2']=='3' and $_GET['typebis2']=="bestscore" and $_GET['levelbis2
 if($_GET['tabbis2']=='3' and $_GET['typebis2']=="bestscore" and $_GET['levelbis2']==5){
     $levelbis2=5;
 }
+}
     $connexion=mysqli_connect('localhost','root','','memory');
     $requete2="SELECT login,points FROM bestscore WHERE level='".$levelbis2."' ORDER BY points DESC";
     $query2=mysqli_query($connexion,$requete2);
     $resultatlevel3=mysqli_fetch_all($query2);
     $l=0;
 while ($n<=10){
-    $resultatlevel3[0][0];//Login
-    $resultatlevel3[0][1];//points
+    // $resultatlevel3[0][0];//Login
+    // $resultatlevel3[0][1];//points
     while($l<count($resultatlevel3)){
-        echo '<tr><td>'.'N°'.$n.'</td><td>'.$resultatlevel3[$l][0].'</td><td>'.$resultatlevel3[$l][1].' pts '.'</td></tr>';
+        $ptstotal=$resultatlevel3[$l][1];
+        $ptstotal = number_format($ptstotal,2);
+        echo '<tr><td>'.'N°'.$n.'</td><td><b>'.$resultatlevel3[$l][0].'</b></td><td><b>'.$ptstotal.'</b> pts '.'</td></tr>';
         ++$l;
         ++$n;
     }
