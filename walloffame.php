@@ -1,17 +1,16 @@
 <?php
 
-
-
 class User{
 
     public $nb_cout;
-    public $level;
+    public $level=1;
     public $temps;
     public $login="";
     public $id;
     public $défi="";
     public $pasword="";
     public $connexion="";
+    
 
 
     public function inscription($login,$password){
@@ -45,7 +44,7 @@ class User{
             session_start();
             $this->id=$resultat[0][0];
             $id=$this->id;
-            header('location:walloffame.php');
+            header('location:walloffame.php?tab=1&type=time&level=1&tabbis=2&typebis=tentative&levelbis=1&tabbis2=3&typebis2=bestscore&levelbis2=1');
             echo '<br/>'.'VOUS ETES BIEN CONNECTEE'.'<br/>';
         }
         else{
@@ -199,13 +198,16 @@ if(isset($memory->login)){
 <!-- TEST PRINCIPALE TIME -->
 <?php
 
-
+if(isset($_GET['levelbis'])){
 if(!isset($levelbis)){
     $levelbis=$_GET['levelbis'];
 }
+}
 
+if(isset($_GET['levelbis2'])){
 if(!isset($levelbis2)){
     $levelbis2=$_GET['levelbis2'];
+}
 }
 
 if(!isset($level)){
@@ -222,22 +224,22 @@ $n=1;
         <th>---TIME---</th>
         <th>
             <ul id="menu-accordeon">
-                <li><a href="#"><?php if(!isset($level)){ echo 'Level';}else{echo 'Level '.$_GET['level'];} ?></a>
+                <li><a href="#"><?php if(!isset($level)){ echo 'Level';} else{echo 'Level '.$_GET['level'];} ?></a>
                     <ul>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=1&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=1&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
                                 1</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=2&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=2&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
                                 2</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=3&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=3&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
                                 3</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=4&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=4&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
                                 4</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=5&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=5&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
                                 5</a></li>
 
 
@@ -308,19 +310,19 @@ $n=1;
                 <li><a href="#"><?php if(!isset($levelbis)){ echo 'Level';}else{echo 'Level '.$_GET['levelbis'];} ?></a>
                     <ul>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=1&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=1&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
                                 1</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=2&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=2&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
                                 2</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=3&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=3&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
                                 3</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=4&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=4&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
                                 4</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=5&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php echo urlencode($levelbis2); ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=5&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
                                 5</a></li>
                     </ul>
                 </li>
@@ -345,6 +347,7 @@ if($_GET['tabbis']=='2' and $_GET['typebis']=="tentative" and $_GET['levelbis']=
     $levelbis=5;
 }
 }
+
     $connexion=mysqli_connect('localhost','root','','memory');
     $requete1="SELECT login,nb_tentative,points FROM besttentative WHERE level='".$levelbis."' ORDER BY points DESC";
     $query1=mysqli_query($connexion,$requete1);
@@ -385,19 +388,19 @@ $n=1;
                 <li><a href="#"><?php if(!isset($levelbis2)){ echo 'Level';}else{echo 'Level '.$_GET['levelbis2'];} ?></a>
                     <ul>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=1">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=1">Level
                                 1</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=2">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=2">Level
                                 2</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=3">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=3">Level
                                 3</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=4">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=4">Level
                                 4</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=5">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=5">Level
                                 5</a></li>
                     </ul>
                 </li>
