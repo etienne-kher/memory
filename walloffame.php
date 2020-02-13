@@ -128,7 +128,7 @@ if(isset($_POST['valider2'])){
             <input type="submit" name="valider2">
         </form>
     </div>
-<?php 
+    <?php 
 if(!empty($memory->login)){
 
     echo '<div class="form">
@@ -157,27 +157,68 @@ if(!empty($memory->login)){
 
 <!-- TEST PRINCIPALE TIME -->
 <?php
+if(!isset($levelbis)){
+    $levelbis=$_GET['levelbis'];
+}
 
+if(!isset($level)){
+    $level=0;
+}
+else{
+    $level=$_GET['level'];
+}
 $n=1;
-?> <table>
+?>
+<section class="aligntab"> <table>
     <th>TOP 10</th>
-        <th>---TIME---</th>
-        <th><ul id="menu-accordeon"><li><a href="#">Level 1</a>
-		<ul>
-			<li><a href="#">Level 2</a></li>
-			<li><a href="#">Level 3</a></li>
-			<li><a href="#">Level 4</a></li>
-			
-		</ul>
-	</li>
- </th>
+    <th>---TIME---</th>
+    <th>
+        <ul id="menu-accordeon">
+            <li><a href="#">Level</a>
+                <ul>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=1&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 1</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=2&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 2</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=3&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 3</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=4&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 4</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=5&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php echo urlencode($levelbis); ?>">Level 5</a></li>
+
+
+                </ul>
+            </li>
+    </th>
     <?php
 while ($n<=10){
     echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$temps'.'</td></tr>';
     ++$n;
 }?>
 </table>
+<br><br><br><br><br>
 <?php
+
+
+if($_GET['tab']=='1'){
+
+    if($_GET['type']=="time"){
+        echo 'TYPE '.$_GET['type'].'<br/>';
+        if($_GET['level']<=5){
+            echo 'LEVEL '.$_GET['level'].'<br/>';
+        }
+    }
+}
+?>
+<br><br>
+<?php
+if($_GET['tabbis']=='2'){
+    if($_GET['typebis']=="tentative"){
+        echo 'TYPE '.$_GET['typebis'].'<br/>';
+        if($levelbis<=5){
+            echo 'LEVEL '.$levelbis.'<br/>';
+            if(!isset($levelbis)){
+                $levelbis=0;
+            }
+        }
+    }
+}
 
 ?>
 
@@ -188,261 +229,31 @@ while ($n<=10){
 $n=1;
 ?> <table>
     <th>TOP 10</th>
-        <th>---TENTATIVE---</th>
-        <th>Level 1</th>
+    <th>---TENTATIVE---</th>
+    <th>
+        <ul id="menu-accordeon">
+            <li><a href="#">Level</a>
+                <ul>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=1">Level 1</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=2">Level 2</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=3">Level 3</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=4">Level 4</a></li>
+                    <li><a href="walloffame.php?tab=1&amp;type=time&amp;level=<?php echo urlencode($_GET['level']); ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=5">Level 5</a></li>
+                </ul>
+            </li>
+    </th>
     <?php
 while ($n<=10){
     echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$temps'.'</td></tr>';
     ++$n;
 }?>
 </table>
+</section>
+
 <?php
 
 ?>
 
-
-<!-- TABLEAU MEILLEUR TEMPS -->
-
-<section class="aligntab">
-
-
-    <table>
-        <th>TOP 10</th>
-        <th>---TIME---</th>
-        <th>Level 1</th>
-
-
-        <tbody>
-            <tr>
-                <td>N°1</td>
-                <td>$login</td>
-                <td>21.2s</td>
-            </tr>
-            <tr>
-                <td>N°2</td>
-                <td>$login</td>
-                <td>32.3s</td>
-            </tr>
-            <tr>
-                <td>N°3</td>
-                <td>$login</td>
-                <td>18.75s</td>
-            </tr>
-            <tr>
-                <td>N°4</td>
-                <td>$login</td>
-                <td>24.5s</td>
-            </tr>
-            <tr>
-                <td>N°5</td>
-                <td>$login</td>
-                <td>28.0s</td>
-            </tr>
-            <tr>
-                <td>N°6</td>
-                <td>$login</td>
-                <td>14.5s</td>
-            </tr>
-            <tr>
-                <td>N°7</td>
-                <td>$login</td>
-                <td>41.2s</td>
-            </tr>
-            <tr>
-                <td>N°8</td>
-                <td>$login</td>
-                <td>33.4s</td>
-            </tr>
-            <tr>
-                <td>N°9</td>
-                <td>$login</td>
-                <td>35.5s</td>
-            </tr>
-            <tr>
-                <td>N°10</td>
-                <td>$login</td>
-                <td>20.5s</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-    <table>
-        <th>TOP 10</th>
-        <th>---TIME---</th>
-        <th>Level 2</th>
-        <tbody>
-            <tr>
-                <td>N°1</td>
-                <td>$login</td>
-                <td>21.2s</td>
-            </tr>
-            <tr>
-                <td>N°2</td>
-                <td>$login</td>
-                <td>32.3s</td>
-            </tr>
-            <tr>
-                <td>N°3</td>
-                <td>$login</td>
-                <td>18.75s</td>
-            </tr>
-            <tr>
-                <td>N°4</td>
-                <td>$login</td>
-                <td>24.5s</td>
-            </tr>
-            <tr>
-                <td>N°5</td>
-                <td>$login</td>
-                <td>28.0s</td>
-            </tr>
-            <tr>
-                <td>N°6</td>
-                <td>$login</td>
-                <td>14.5s</td>
-            </tr>
-            <tr>
-                <td>N°7</td>
-                <td>$login</td>
-                <td>41.2s</td>
-            </tr>
-            <tr>
-                <td>N°8</td>
-                <td>$login</td>
-                <td>33.4s</td>
-            </tr>
-            <tr>
-                <td>N°9</td>
-                <td>$login</td>
-                <td>35.5s</td>
-            </tr>
-            <tr>
-                <td>N°10</td>
-                <td>$login</td>
-                <td>20.5s</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table>
-        <th>TOP 10</th>
-        <th>---TIME---</th>
-        <th>Level 3</th>
-        <tbody>
-            <tr>
-                <td>N°1</td>
-                <td>$login</td>
-                <td>21.2s</td>
-            </tr>
-            <tr>
-                <td>N°2</td>
-                <td>$login</td>
-                <td>32.3s</td>
-            </tr>
-            <tr>
-                <td>N°3</td>
-                <td>$login</td>
-                <td>18.75s</td>
-            </tr>
-            <tr>
-                <td>N°4</td>
-                <td>$login</td>
-                <td>24.5s</td>
-            </tr>
-            <tr>
-                <td>N°5</td>
-                <td>$login</td>
-                <td>28.0s</td>
-            </tr>
-            <tr>
-                <td>N°6</td>
-                <td>$login</td>
-                <td>14.5s</td>
-            </tr>
-            <tr>
-                <td>N°7</td>
-                <td>$login</td>
-                <td>41.2s</td>
-            </tr>
-            <tr>
-                <td>N°8</td>
-                <td>$login</td>
-                <td>33.4s</td>
-            </tr>
-            <tr>
-                <td>N°9</td>
-                <td>$login</td>
-                <td>35.5s</td>
-            </tr>
-            <tr>
-                <td>N°10</td>
-                <td>$login</td>
-                <td>20.5s</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table>
-        <th>TOP 10</th>
-        <th>---TIME---</th>
-        <th>Level 4</th>
-        <tbody>
-            <tr>
-                <td>N°1</td>
-                <td>$login</td>
-                <td>21.2s</td>
-            </tr>
-            <tr>
-                <td>N°2</td>
-                <td>$login</td>
-                <td>32.3s</td>
-            </tr>
-            <tr>
-                <td>N°3</td>
-                <td>$login</td>
-                <td>18.75s</td>
-            </tr>
-            <tr>
-                <td>N°4</td>
-                <td>$login</td>
-                <td>24.5s</td>
-            </tr>
-            <tr>
-                <td>N°5</td>
-                <td>$login</td>
-                <td>28.0s</td>
-            </tr>
-            <tr>
-                <td>N°6</td>
-                <td>$login</td>
-                <td>14.5s</td>
-            </tr>
-            <tr>
-                <td>N°7</td>
-                <td>$login</td>
-                <td>41.2s</td>
-            </tr>
-            <tr>
-                <td>N°8</td>
-                <td>$login</td>
-                <td>33.4s</td>
-            </tr>
-            <tr>
-                <td>N°9</td>
-                <td>$login</td>
-                <td>35.5s</td>
-            </tr>
-            <tr>
-                <td>N°10</td>
-                <td>$login</td>
-                <td>20.5s</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-</section>
 <br><br><br>
 
 
