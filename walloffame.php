@@ -1,202 +1,26 @@
-<?php
-
-class User{
-
-    public $nb_cout;
-    public $level=1;
-    public $temps;
-    public $login="";
-    public $id;
-    public $défi="";
-    public $pasword="";
-    public $connexion="";
-    
-
-
-    public function inscription($login,$password){
-        
-        $connexion=mysqli_connect("Localhost","root","","memory");
-        $requete0="SELECT * FROM utilisateurs WHERE login='".$login."'";
-        $query=mysqli_query($connexion,$requete0);
-        $resultat=mysqli_fetch_row($query);
-        $this->connexion=$connexion;
-        $this->password=$password;
-
-        if($resultat==0){
-            $requete="INSERT INTO utilisateurs (login,password) VALUES ('".$login."','".$password."')";
-            $query=mysqli_query($connexion,$requete);
-            echo '<br/>'.'VOUS VOUS ETES BIEN INSCRIT'.'<br/>';
-        }
-        else{
-            echo '<br/>'.'LOGIN DEJA EXISTANT'.'<br/>';
-        }
-    }
-
-
-    public function connexion($login,$password){
-
-        $connexion=mysqli_connect("Localhost","root","","memory");
-        $requete1="SELECT id,login,password FROM utilisateurs WHERE login='".$login."'";
-        $query=mysqli_query($connexion,$requete1);
-        $resultat=mysqli_fetch_all($query);
-
-        if($resultat[0][1]==$login and $resultat[0][2]==$password){
-            session_start();
-            $this->id=$resultat[0][0];
-            $id=$this->id;
-            header('location:walloffame.php?tab=1&type=time&level=1&tabbis=2&typebis=tentative&levelbis=1&tabbis2=3&typebis2=bestscore&levelbis2=1');
-            echo '<br/>'.'VOUS ETES BIEN CONNECTEE'.'<br/>';
-        }
-        else{
-            echo '<br/>'.'LOGIN OU MOT DE PASSE INCORRECT'.'<br/>';
-        }
-        
-    }
-
-    public function deconnecte(){
-        session_destroy();
-
-    }
-
-
-
-    Public function scoreperso($défi,$level,$nb_cout,$temps) {
-
-
-        if(isset($défi) and isset($level) and isset($nb_cout) and isset($temps)){
-
-            $connexion=mysqli_connect("Localhost","root","","memory");
-            $requete2="SELECT * FROM utilisateur WHERE login='amine'";
-            $query=mysqli_query($connexion,$requete2);
-            $resultat=mysqli_fetch_all($query);
-            var_dump($resultat);
-
-            session_start();
-
-            $this->défi=$défi;
-            $this->level=$level;
-            $this->temps=$temps;
-            $this->nb_cout=$nb_cout;
-            $login=$this->login;
-            $id=$this->id;
-            
-            
-
-            $connexion=mysqli_connect('localhost','root','','memory');
-            $requete="INSERT INTO score (temps,tentative,level,defi,id_utilisateur) VALUES ('".$temps."','".$nb_cout."','".$level."','".$défi."'.'".$id."') WHERE login='".$login."'";
-            $query=mysqli_query($connexion,$requete);
-            echo ($query);
-
-            echo '<br/>Défi = '.$défi.'<br>';
-            echo 'Level = '.$level.'<br>';
-            echo 'Nb_cout = '.$nb_cout.'<br/>';
-            echo 'Temps= '.$temps.'<br/>';
-            echo 'Id= '.$this->id.'<br/>';
-            echo 'login= '.$login.'<br/>';
-
-        }
-    }
-
-
-
-
-
-
-}
-
-
-
-
-
-
-?>
-
-<?php
-
-
-
-?>
-
 <html>
-
 <title>Wall of Fame</title>
 <link rel="stylesheet" href="walloffame.css">
 
+
 <?php
-$memory=new User;
-if(isset($_POST['valider'])){
-    $memory->scoreperso($_POST['défi'],$_POST['level'],$_POST['nb_cout'],$_POST['temps']);
+session_start();
+
+
+
+
+if(isset($_SESSION['login']) and isset($_SESSION['nb_tentative'])){
+ echo 'Login = '.$_SESSION['login'].'<br/>';
+//  echo 'ID = '.$_SESSION['id'].'<br/>';
+//  echo 'Nb tentative = '.$_SESSION['nb_tentative'].' coups'.'<br/>';
+//  echo 'Chrono = '.$_SESSION['temps'].' secondes'.'<br/>';
+//  echo 'Level = '.$_SESSION['level'].'<br/>';
+//  echo 'Défi = '.$_SESSION['defi'].'<br/>';
+//  echo 'Points besttime = '.$_SESSION['pointstime'].'<br/>';
+// echo 'Points besttentative = '.$_SESSION['pointstentative'].'<br/>';
 }
 
-// INSCRIPTION
-if(isset($_POST['valider1'])){
-    $memory->inscription($_POST['login'],$_POST['password']);
-}
-
-// CONNEXION
-if(isset($_POST['valider2'])){
-    $memory->connexion($_POST['login'],$_POST['password']);
-}
-
-
-
-?>
-
-<section class="aligntab">
-    <div class="form">
-        <br>
-        <!-- INSCRIPTION -->
-        Inscription
-        <form action="" method="post">
-            <input type="text" name="login"><br>
-            <input type="text" name="password"><br>
-            <input type="submit" name="valider1">
-        </form>
-    </div>
-
-    <div class="form">
-        <br>
-        <!-- CONNEXION -->
-        Connexion
-        <form action="" method="post">
-            <input type="text" name="login"><br>
-            <input type="text" name="password"><br>
-            <input type="submit" name="valider2">
-        </form>
-    </div>
-    <?php 
-if(isset($memory->login)){
-
-    echo '<div class="form">
-        <br><br><br>
-        <!-- DECONNEXION -->
-        <form action="" method="post">
-            <input type="submit" name="valider3" value="Deconnexion">
-        </form>
-    </div>';
-}
-
-?>
-    <div class="form">
-        <br>
-        <!-- TEST -->
-        Test
-        <form action="" method="post">
-            <SELECT type="text" name="défi" size="1">
-            <OPTION>TIME
-            <OPTION>TENTATIVE
-        </SELECT><br>
-            <input type="text" name="level" placeholder="level"><br>
-            <input type="text" name="nb_cout" placeholder="Nb_cout"><br>
-            <input type="text" name="temps" placeholder="Temps"><br>
-            <input type="submit" name="valider">
-        </form>
-    </div>
-</section>
-
-
-<!-- TEST PRINCIPALE TIME -->
-<?php
+// <!-- TEST " CHRONO " -->
 
 if(isset($_GET['levelbis'])){
 if(!isset($levelbis)){
@@ -220,26 +44,30 @@ $n=1;
 ?>
 <section class="aligntab">
     <table>
-        <th>TOP 10</th>
-        <th>---TIME---</th>
+    <th class="col1">Top</th>
+
+        <th class="col1"> 10</th>
+        <th class="col1"> " Chrono " </th>
         <th>
-            <ul id="menu-accordeon">
-                <li><a href="#"><?php if(!isset($level)){ echo 'Level';} else{echo 'Level '.$_GET['level'];} ?></a>
+            <ul id="menu-accordeon">                
+
+                <li>
+                <a href="#">** <?php if(!isset($_GET['level'])){ echo 'Level 1';} else{echo 'Level '.$_GET['level'];} ?> **</a>
                     <ul>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=1&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=1&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }else{echo $levelbis=1;}?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } else{echo $levelbis2=1;}?>">Level
                                 1</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=2&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=2&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }else{echo $levelbis=2;}?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } else{echo $levelbis2=2;}?>">Level
                                 2</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=3&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=3&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }else{echo $levelbis=3;}?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); }else{echo $levelbis2=3;} ?>">Level
                                 3</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=4&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=4&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }else{echo $levelbis=4;}?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); }else{echo $levelbis2=4;} ?>">Level
                                 4</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=5&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelnis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); } ?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=5&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }else{echo $levelbis=5;}?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){echo urlencode($levelbis2); }else{echo $levelbis2=5;} ?>">Level
                                 5</a></li>
 
 
@@ -249,46 +77,61 @@ $n=1;
         <?php
 if(isset($_GET['tab'])){
 
-if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==1){
-    $level=1;
-}
-if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==2){
-    $level=2;
-}
-if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==3){
-    $level=3;
-}
-if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==4){
-    $level=4;
-}
-if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==5){
-    $level=5;
-}
-}
-    $connexion=mysqli_connect('localhost','root','','memory');
-    $requete="SELECT login,temps,points FROM besttime WHERE level='".$level."' ORDER BY points DESC";
-    $query=mysqli_query($connexion,$requete);
-    $resultatlevel1=mysqli_fetch_all($query);
-    $j=0;
-while ($n<=10){
-    
-    // $resultatlevel1[0][0];//Login
-    // $resultatlevel1[0][1];//temps
-    // $resultatlevel1[0][2];//points
-    while($j<count($resultatlevel1)){
-        $pts=$level/$resultatlevel1[$j][1];
-        $ptstotal=$pts*$level*10;
-        $ptstotal = number_format($ptstotal,2);
-        echo '<tr><td>'.'N°'.$n.'</td><td>'.'<b>'.$resultatlevel1[$j][0].'</b>'.'</td><td><b>'.$resultatlevel1[$j][1].'</b> secondes -------- <b> '.$ptstotal.'</b> pts '.'</td></tr>';
-        ++$j;
-        ++$n;
+    if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==1){
+        $level=1;
     }
-    if($j==count($resultatlevel1)){
-        echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$points'.'</td></tr>';
-        ++$n;
+    if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==2){
+        $level=2;
+    }
+    if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==3){
+        $level=3;
+    }
+    if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==4){
+        $level=4;
+    }
+    if($_GET['tab']=='1' and $_GET['type']=="time" and $_GET['level']==5){
+        $level=5;
+    }
+}
 
+else{
+    $level=1;
     }
+
+    
+
+
+if(!empty($resultat2)){
+    $nb_partielevel=count($resultat2);
     }
+else{
+    $nb_partielevel=1;
+    }
+
+    $j=0;
+
+        $connexion=mysqli_connect('localhost','root','','memory');
+        $requete0="SELECT login,avg(points),avg(temps) FROM `besttime`where level='".$level."'  GROUP BY login ORDER BY  avg(temps) LIMIT 10 ";
+        
+        $query0=mysqli_query($connexion,$requete0);
+        $resultat0=mysqli_fetch_all($query0);
+        //var_dump($resultat0);
+        $n=1;
+        echo '<tr><td class="thead">'.'#1'.'</td><td class="thead">'.'Pseudo'.'</td><td class="thead">'.'Moyenne TEMPS'.'</td><td class="thead">Moyenne POINTS</td></tr>';
+
+        foreach($resultat0 as $ligne)
+        {
+            $ligne[1] = number_format($ligne[1],2);
+            $ligne[2] = number_format($ligne[2],1);
+            echo '<tr><td class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b> '.$ligne[2].'</b> secondes </td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+            $n++;
+        }  
+       
+        while($n<=10)
+        {
+            echo '<tr><td class="num1bis">'.'N°<b>'.$n.'</b></td><td class="num1bis">'.'<b>'.'</b>'.'</td><td class="num1bis"><b>'.'</b> <b> '.'</b> '.'</td><td class="num1bis"></td></tr>';
+            $n++;
+        }
     ?>
     </table>
     <br><br><br><br>
@@ -298,31 +141,36 @@ while ($n<=10){
 
 
     <br>
-    <!-- TEST PRINCIPALE TENTATIVE -->
+<!-- TEST PRINCIPALE  " SANS-FAUTE "  -->
     <?php
 
 $n=1;
 ?> <table>
-        <th>TOP 10</th>
-        <th>---TENTATIVE---</th>
+    <th class="col1">Top</th>
+
+        <th class="col1">10</th>
+        <th class="col1"> " Sans-faute " </th>
         <th>
             <ul id="menu-accordeon">
-                <li><a href="#"><?php if(!isset($levelbis)){ echo 'Level';}else{echo 'Level '.$_GET['levelbis'];} ?></a>
+            <li>
+                <a href="#">** <?php if(!isset($_GET['levelbis'])){ echo 'Level 1';} else{echo 'Level '.$_GET['levelbis'];} ?> **</a>
+                    <ul>
+                <li>
+                <a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=1&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }else{echo $levelbis2=1;}?>">Level
+                                1</a>
                     <ul>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=1&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
-                                1</a></li>
-                        <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=2&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=2&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }else{echo $levelbis2=2;}?>">Level
                                 2</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=3&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=3&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }else{echo $levelbis2=3;}?>">Level
                                 3</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=4&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=4&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }else{echo $levelbis2=4;}?>">Level
                                 4</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=5&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }?>">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=5&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=<?php if(isset($levelbis2)){ echo urlencode($levelbis2); }else{echo $levelbis2=5;}?>">Level
                                 5</a></li>
                     </ul>
                 </li>
@@ -347,66 +195,90 @@ if($_GET['tabbis']=='2' and $_GET['typebis']=="tentative" and $_GET['levelbis']=
     $levelbis=5;
 }
 }
+else{
+    $levelbis=1;
+}
+
+
+
+if(!empty($resultatlevel2)){
+    $nb_partielevel=count($resultatlevel2);
+    }
+else{
+    $nb_partielevel=1;
+    }
 
     $connexion=mysqli_connect('localhost','root','','memory');
-    $requete1="SELECT login,nb_tentative,points FROM besttentative WHERE level='".$levelbis."' ORDER BY points DESC";
-    $query1=mysqli_query($connexion,$requete1);
-    $resultatlevel2=mysqli_fetch_all($query1);
-    $k=0;
-while ($n<=10){    
-    // $resultatlevel2[0][0];//Login
-    // $resultatlevel2[0][1];//tentative
-    // $resultatlevel2[0][2];//points
-    while($k<count($resultatlevel2)){
-        $pts=$levelbis/$resultatlevel2[$k][1];
-        $ptstotal=$pts*$levelbis*10;
-        $ptstotal = number_format($ptstotal,2);
-        echo '<tr><td>'.'N°'.$n.'</td><td><b>'.$resultatlevel2[$k][0].'</b></td><td><b>'.$resultatlevel2[$k][1].'</b> coups -------------- <b>'.$ptstotal.'</b> pts '.'</td></tr>';
-        ++$k;
-        ++$n;
-    }
-    if($k==count($resultatlevel2)){
-        echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$points'.'</td></tr>';
-        ++$n;
+    $requete0="SELECT login,avg(points),avg(nb_tentative) FROM `besttentative`where level='".$levelbis."'  GROUP BY login ORDER BY avg(nb_tentative) LIMIT 10 ";
+    
+    $query0=mysqli_query($connexion,$requete0);
+    $resultat0=mysqli_fetch_all($query0);
+    //var_dump($resultat0);
+    $n=1;
+    echo '<tr><td class="thead">'.'#2'.'</td><td class="thead">'.'Pseudo'.'</td><td class="thead">'.'Moyenne COUPS'.'</td><td class="thead">Moyenne POINTS</td></tr>';
 
+    foreach($resultat0 as $ligne)
+    {
+        $ligne[1] = number_format($ligne[1],2);
+        $ligne[2] = number_format($ligne[2],1);
+        echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>'.$ligne[2].'</b> coups</td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+        $n++;
+    }  
+   
+    while($n<=10)
+    {
+        echo '<tr><td  class="num1bis">'.'N°<b>'.$n.'</b></td><td class="num1bis">'.'<b>'.'</b>'.'</td><td class="num1bis"><b>'.'</b> <b> '.'</b>'.'</td><td class="num1bis"></td></tr>';
+        $n++;
     }
-}
-    ?>
-    </table>
+?>
 
-    <br>
-    <!-- TEST PRINCIPALE BESTSCORE -->
+    
+<!-- TEST PRINCIPALE BESTSCORE -->
+
+
+<?php
+
+
+
+
+?>
+
 
     <?php
 
 $n=1;
 ?> <table>
-        <th>TOP 10</th>
-        <th>---BEST TOTAL SCORE---</th>
+    <th class="col1">Top</th>
+
+        <th class="col1">10</th>
+        <th class="col1">" Best total points "</th>
         <th>
             <ul id="menu-accordeon">
-                <li><a href="#"><?php if(!isset($levelbis2)){ echo 'Level';}else{echo 'Level '.$_GET['levelbis2'];} ?></a>
+            <li>
+                <a href="#">** <?php if(!isset($_GET['levelbis2'])){ echo 'Level 1';} else{echo 'Level '.$_GET['levelbis2'];} ?> **</a>
+                    <ul>
+                <li>
+                <a
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=1">Level
+                                1</a>
                     <ul>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=1">Level
-                                1</a></li>
-                        <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=2">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=2">Level
                                 2</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=3">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=3">Level
                                 3</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=4">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=4">Level
                                 4</a></li>
                         <li><a
-                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($_GET['level'])){ echo urlencode($_GET['level']);} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=5">Level
+                                href="walloffame.php?tab=1&amp;type=time&amp;level=<?php if(isset($level)){echo $level;}else{ echo $_GET['level'];} ?>&amp;tabbis=2&amp;typebis=tentative&amp;levelbis=<?php if(isset($levelbis)){ echo urlencode($levelbis); }?>&amp;tabbis2=3&amp;typebis2=bestscore&amp;levelbis2=5">Level
                                 5</a></li>
                     </ul>
                 </li>
         </th>
         <?php
-if(isset($_GET['tab'])){
+if(isset($_GET['tabbis2'])){
 
 if($_GET['tabbis2']=='3' and $_GET['typebis2']=="bestscore" and $_GET['levelbis2']==1){
     $levelbis2=1;
@@ -424,36 +296,34 @@ if($_GET['tabbis2']=='3' and $_GET['typebis2']=="bestscore" and $_GET['levelbis2
     $levelbis2=5;
 }
 }
+else{
+    $levelbis2=1;
+}
+
     $connexion=mysqli_connect('localhost','root','','memory');
-    $requete2="SELECT login,points FROM bestscore WHERE level='".$levelbis2."' ORDER BY points DESC";
-    $query2=mysqli_query($connexion,$requete2);
-    $resultatlevel3=mysqli_fetch_all($query2);
-    $l=0;
-while ($n<=10){
-    // $resultatlevel3[0][0];//Login
-    // $resultatlevel3[0][1];//points
-    while($l<count($resultatlevel3)){
-        $ptstotal=$resultatlevel3[$l][1];
-        $ptstotal = number_format($ptstotal,2);
-        echo '<tr><td>'.'N°'.$n.'</td><td><b>'.$resultatlevel3[$l][0].'</b></td><td><b>'.$ptstotal.'</b> pts '.'</td></tr>';
-        ++$l;
-        ++$n;
-    }
-    if($l==count($resultatlevel3)){
-        echo '<tr><td>'.'N°'.$n.'</td><td>'.'$login'.'</td><td>'.'$points'.'</td></tr>';
-        ++$n;
+    $requete0="SELECT utilisateurs.login,SUM(besttime.points) + SUM(besttentative.points) FROM utilisateurs INNER JOIN besttime on utilisateurs.id=besttime.id_utilisateur INNER JOIN besttentative on utilisateurs.id=besttentative.id_utilisateur WHERE besttime.level='".$levelbis2."' AND besttentative.level='".$levelbis2."' GROUP by utilisateurs.login ORDER BY SUM(besttime.points) + SUM(besttentative.points) LIMIT 10 ";
+    $query0=mysqli_query($connexion,$requete0);
+    $resultat0=mysqli_fetch_all($query0);
 
-    }
-}?>
-    </table>
-</section>
+    $n=1;
+    echo '<tr><td class="thead">'.'#3'.'</td><td class="thead">'.'Pseudo'.'</td><td class="thead">'.'CALCUL'.'</td><td class="thead">Total POINTS</td></tr>';
 
-<?php
+    foreach($resultat0 as $ligne)
+    {
+        $ligne[1] = number_format($ligne[1],2);
+        echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>Pts total </b><i>Chrono</i> + <b>Pts total </b><i>Sans-faute</i> </td><td class="num1"><b>'.$ligne[1].'</b> pts '.'</td></tr>';
+        $n++;
+    }  
+   
+    while($n<=10)
+    {
+        echo '<tr><td  class="num1bis">'.'N°<b>'.$n.'</b></td><td class="num1bis">'.'<b>'.'</b>'.'</td><td class="num1bis"><b>'.'</b> <b> '.'</b>'.'</td><td class="num1bis"></td></tr>';
+        $n++;
+    }
+
 
 ?>
-
-<br><br><br>
-
-
+    </table>
+</section>
 
 </html>
