@@ -29,7 +29,7 @@ date_default_timezone_set('Europe/Paris');
 
 
 $n=1;
-?> <table>
+?> <table class="tableprofil">
     <th class="col1">TOP 5</th>
     <th class="col1"> --- PAR MODE DE JEU --- </th>
     <th>
