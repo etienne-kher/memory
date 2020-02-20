@@ -293,7 +293,7 @@ else
 {
     //formulaire de lancement avec choix et if du post
   ?>
-
+<div id="jeu-div">
   <form method="post" action="index.php">
     <label>Mode de jeu</label>
     <select name="defi" id="">
@@ -304,13 +304,14 @@ else
     <input type="number"  name="niv" placeholder="3" step="1" min="3" max="12" ><br>
     <input type="submit" name="envniv" value="jouer">
   </form>
+</div>
   <?php
 
   if(isset($_POST['envniv']))
   {
   	if(!isset($_SESSION['login']))
   	{ ?>	
-  		<p>Vous devez étres <a href="connexion.php">connécté</a> pour jouer et enregistrer vos scores</p>
+  		<p class="err">Vous devez étres <a href="connexion.php">connécté</a> pour jouer et enregistrer vos scores</p>
   	 <?php	
   	}
   	else
