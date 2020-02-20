@@ -18,7 +18,7 @@ class tabcarte
   public  $refresh=false;//var reactualisation
   private $cartrouve=0;
   public $temp; //retient le temp unix du debut de partie
-  //
+  public $fin=false;
   public $scorefinal;
   public $point="p"; //nb de point à la fin
  function __construct($nb)
@@ -161,6 +161,7 @@ class tabcarte
     
           if($_SESSION['defi']=='Chrono' and isset($_SESSION['login']))
           {
+            $fin=true;
            // CALCUL TOTAL POINTS DEFI CHRONO
           $pointstime=(1/$this->scorefinal['temps'])*10*$this->lvl;
  			// $_SESSION['pointstime']=$pointstime;
@@ -171,15 +172,39 @@ class tabcarte
             $requete="INSERT INTO besttime (login,temps,points,level,defi,id_utilisateur,date) VALUES ('".$_SESSION['login']."','".$this->scorefinal['temps']."','".$pointstime."','".$this->lvl."','".$_SESSION['defi']."','".$_SESSION['id_utilisateur']."','".$d."') ";
             $query=mysqli_query($connexion,$requete);
             // echo ($requete).'<br/>'; 
+
+            ?><style>
+
+            @keyframes animationfinpartie{
+              0% {transform: translateY(0px);}
+              100%{transform: translateY(-785px);}
+            }
+
+            #animationfinpartie{
+              animation-name: animationfinpartie;
+              animation-duration :2s;
+              animation-timing-function :ease-out;
+              animation-delay :1s;
+              animation-fill-mode:forwards;
+            }
+
+            section{
+              position: relative;
+            }
+                        </style>
+                        <?php
           }
 
           if($_SESSION['defi']=='Sans faute' and isset($_SESSION['login']))
           {
 			// CALCUL TOTAL POINTS DEFI SANS FAUTE
-			if($this->scorefinal['tentative']==0)
-			{
-				$this->scorefinal['tentative']=1/$this->lvl;
-			}
+            if($this->scorefinal['tentative']==0)
+            {
+              $this->scorefinal['tentative']=1/$this->lvl;
+            }
+
+            $fin=true;
+      
           	$pointstentative=(1/$this->scorefinal['tentative'])*10*$this->lvl;
          	  $_SESSION['pointstentative']=$pointstentative;
             $pointstentative= number_format($pointstentative,1);
@@ -257,7 +282,7 @@ class tabcarte
 <html>
 <head>
 	<title>memory</title>
-	<link rel="stylesheet" type="text/css" href="memo.css">
+  <link rel="stylesheet" type="text/css" href="memo.css"> 
 	<?php
 		if(isset($_GET['chrono'])) //refresh la page toute les 1s
 		{    
@@ -276,9 +301,11 @@ include('header.php');
 
 if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 {
+  $fin=true;
+
 	if(isset($_GET['jouer']))
 	{
-		$_SESSION['jeu']->jouer($_GET['jouer']);
+    $_SESSION['jeu']->jouer($_GET['jouer']);
 	}
 	$_SESSION['jeu']->afficher();//affiche le tableaux
   ?>
