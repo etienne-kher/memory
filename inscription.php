@@ -20,7 +20,7 @@
 				if ($_POST['login']!=$_POST['psw']) 
 				{
 					//final
-					// $_POST['psw']=chiffre($_POST['psw']);
+					$_POST['psw']=chiffre($_POST['psw']);
 					sql("INSERT INTO `utilisateurs` (`id`, `login`, `password`) VALUES (NULL, '".$_POST['login']."', '".$_POST['psw']."')");
 					header('Location: connexion.php');
 					//final	
