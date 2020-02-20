@@ -211,11 +211,11 @@ class tabcarte
           $_SESSION['nb_tentative']=1;
         }
         */
-        echo '<p class="text-memo"><br/>Level ='.$_SESSION['jeu']->lvl.'<br/>';
-        echo 'DEFI  = '.$_SESSION['defi'].'<br/>';
-        echo ' Nombre d\'erreur : '.$_SESSION['jeu']->nbtentative.'</p>';
+        echo '<p class="text background"><br/>Mode de jeu  = '.$_SESSION['defi'].'<br/>';
+        echo 'Level ='.$_SESSION['jeu']->lvl.'<br/>';
+        echo ' Nombre d\'erreur(s) = '.$_SESSION['jeu']->nbtentative.'</p>';
       ?> 
-      <h1 id="win">Winner</h1> 
+      <h1 id="win"><?php echo 'Vous êtes un Winner '.$_SESSION['login'].' !</h1>';?> 
       <p><?php
       //=$score['temps']; 
       //ajout amine
@@ -284,7 +284,7 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 	}
 	$_SESSION['jeu']->afficher();//affiche le tableaux
   ?>
-	<article id="animationfinpartie" class="text-memo">
+	<article <?php if($_SESSION['jeu']->point!="p"){ echo'id="animationfinpartie"'; } ?> class="text-memo">
   	<?php
   	$_SESSION['jeu']->win();
   ?>
