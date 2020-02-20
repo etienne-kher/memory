@@ -211,7 +211,7 @@ class tabcarte
           $_SESSION['nb_tentative']=1;
         }
         */
-        echo '<p class="text-memo">Level ='.$_SESSION['jeu']->lvl.'<br/>';
+        echo '<p class="text-memo"><br/>Level ='.$_SESSION['jeu']->lvl.'<br/>';
         echo 'DEFI  = '.$_SESSION['defi'].'<br/>';
         echo ' Nombre d\'erreur : '.$_SESSION['jeu']->nbtentative.'</p>';
       ?> 
@@ -291,7 +291,7 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
   <!-- <p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;?>
   </p>      -->
   <!-- VARIABLE NOMBRE DE TENTATIVE A RECUPERER POUR AFFICHAGE WALL OF FAME ******************************************* -->
-  <br><a href="index.php?end=true">Ressayer</a>
+  <a href="index.php?end=true">Ressayer</a><br>
   <a href="index.php?chang=true">Changer difficulter/Mode de jeu</a>
     </article>
     </section>
