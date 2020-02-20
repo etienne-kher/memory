@@ -42,7 +42,7 @@ class tabcarte
 		shuffle($arr);
 		$this->arr=$arr; //affichage du tableau
 
-        $t="<section>";
+        $t="<section class=\"jeu\">";
         	for ($j=0; $j < $nb*2 ; $j++)
         	{	$ch=$j;
         		
@@ -225,11 +225,11 @@ class tabcarte
      // echo 'Nombre de coups : '.$this->scorefinal['tentative'].' !'.'<br/>';
       if($_SESSION['defi']=='Chrono')
       {
-        echo 'Vous gagné '.$_SESSION['jeu']->point.' pts <br/>';
+        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/>';
       }
       else
       {
-        echo 'Vous gagné '.$_SESSION['jeu']->point.' pts <br/>';
+        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/>';
 
       }
     }//fermeture if win et fin modif amine
@@ -248,6 +248,7 @@ class tabcarte
 <html>
 <head>
 	<title>memory</title>
+	<link rel="stylesheet" type="text/css" href="memo.css">
 	<?php
 		if(isset($_GET['chrono'])) //refresh la page toute les 1s
 		{    
@@ -257,7 +258,7 @@ class tabcarte
 		} 
 	?>
 </head>
-<body>
+<body class="body-jeu">
 
 
 <?php 
@@ -270,9 +271,13 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 	{
 		$_SESSION['jeu']->jouer($_GET['jouer']);
 	}
-	$_SESSION['jeu']->afficher();//affiche nb fammille a trouver et nb carte total
-  	echo 'Level = '.$_SESSION['jeu']->lvl.'<br/>';
-  	echo 'DEFI  = '.$_SESSION['defi'].'<br/>';
+	$_SESSION['jeu']->afficher();//affiche le tableaux
+	?>
+	<article id="text-memo">
+  	<p>Level = <?=$_SESSION['jeu']->lvl ?><br/>
+  	   DEFI  = <?=$_SESSION['defi']?><br/>
+    </p>
+  	<?php
   	$_SESSION['jeu']->win();
   	
   ?><p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;
@@ -281,7 +286,7 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
   </p>     <!-- VARIABLE NOMBRE DE TENTATIVE A RECUPERER POUR AFFICHAGE WALL OF FAME ******************************************* -->
   <a href="index.php?end=true">Ressayer</a>
   <a href="index.php?chang=true">Changer difficulter/mode de jeu</a>
-
+  	</article>
   <?php
 }
 else
@@ -350,49 +355,3 @@ if(isset($_GET['chang']))
     header("Location: index.php");
   }  
 ?>
-
-
-<style type="text/css">
-  section
-  {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: 70vh;
-    align-items: center;
-  }
-  .div-carte
-  {
-    border-radius: 10%;
-    margin: 1%;
-    width: 10%;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color:#ce8484;
-    box-shadow: 3px 3px 20px #6a4040;
-    transition: transform;
-    transition-duration: 0.8s;
-
-  }
-  .noturn:hover
-  {
-    transform:  rotateX(-65deg) rotateY(-47deg) rotateZ(-22deg) scale(1.1);
-  }
-  .turn:hover
-  {
-    transform: scale(1.1);
-  }
-  img
-  {
-    width: 80%;
-    margin: auto;
-  }
-  a
-  {
-    align-items: center;
-    display: flex;
-    width: 80%;
-  }
-</style>

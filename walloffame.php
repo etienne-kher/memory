@@ -1,14 +1,18 @@
 <html>
-<title>Wall of Fame</title>
-<link rel="stylesheet" href="walloffame.css">
-
-
+<head>
+	<title>Wall of Fame</title>
+	<link rel="stylesheet" href="walloffame.css">
+	<link rel="stylesheet" type="text/css" href="memo.css">
+</head>
+<body>
 <?php
 session_start();
 
+include('header.php');
 
-
-
+?>
+<main>
+<?php 
 if(isset($_SESSION['login']) and isset($_SESSION['nb_tentative'])){
  echo 'Login = '.$_SESSION['login'].'<br/>';
 //  echo 'ID = '.$_SESSION['id'].'<br/>';
@@ -325,5 +329,6 @@ else{
 ?>
     </table>
 </section>
-
+</main>
+</body>
 </html>

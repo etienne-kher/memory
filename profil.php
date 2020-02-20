@@ -1,18 +1,21 @@
 <html>
 <title>Profil</title>
-<link rel="stylesheet" href="walloffame.css">
-</html>
+<head>
+	<link rel="stylesheet" href="walloffame.css">
+	<link rel="stylesheet" type="text/css" href="memo.css">
+</head>
+<body>
 
 <?php
 session_start();
-
+include('header.php');
 
 if(isset($_SESSION['login'])){
 
 
 ?>
 
-
+<main id="main-profil">
 <br>
 <!-- TEST VOS PARTIE -->
 <?php
@@ -149,3 +152,5 @@ else{
 }
 
 ?>
+</main>
+</body>

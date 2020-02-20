@@ -1,11 +1,13 @@
 <?php
 	session_start();
 	include('fonction.php');
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>inscription</title>
+	<link rel="stylesheet" type="text/css" href="memo.css">
 </head>
 <body>
 <?php 
