@@ -102,7 +102,7 @@ img
   flex-direction: column;
   align-items: center;
   margin-top:50px;
-  padding: 1.3px 3%;
+  padding: 0px 0px 53px 0px;
   font-family: 'Odibee Sans', cursive;
   color: #46e3af;
   text-shadow: 1px 1px 3px black;
@@ -202,3 +202,20 @@ img
 
 
 
+@keyframes animationfinpartie{
+  0% {transform: translateY(0px); background-color:hsl(#309, 31%, 85%);}
+  99% { background-color:hsl(rgba(51, 0, 153, 0.496), 31%, 85%);}
+  100%{transform: translateY(-785px); background-color:hsla(20, 68%, 63%, 0.91);}
+}
+
+#animationfinpartie{
+  animation-name: animationfinpartie;
+  animation-duration :2s;
+  animation-timing-function :ease-out;
+  animation-delay :1s;
+  animation-fill-mode:forwards;
+}
+
+section{
+  position: relative;
+}
