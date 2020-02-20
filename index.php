@@ -18,8 +18,7 @@ class tabcarte
   public  $refresh=false;//var reactualisation
   private $cartrouve=0;
   public $temp; //retient le temp unix du debut de partie
-  public $fin=false;
-  public $scorefinal;
+   public $scorefinal;
   public $point="p"; //nb de point à la fin
  function __construct($nb)
     {
@@ -161,7 +160,6 @@ class tabcarte
     
           if($_SESSION['defi']=='Chrono' and isset($_SESSION['login']))
           {
-            $fin=true;
            // CALCUL TOTAL POINTS DEFI CHRONO
           $pointstime=(1/$this->scorefinal['temps'])*10*$this->lvl;
  			// $_SESSION['pointstime']=$pointstime;
@@ -183,7 +181,6 @@ class tabcarte
               $this->scorefinal['tentative']=1/$this->lvl;
             }
 
-            $fin=true;
       
           	$pointstentative=(1/$this->scorefinal['tentative'])*10*$this->lvl;
          	  $_SESSION['pointstentative']=$pointstentative;
@@ -280,7 +277,6 @@ include('header.php');
 
 if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 {
-  $fin=true;
 
 	if(isset($_GET['jouer']))
 	{
