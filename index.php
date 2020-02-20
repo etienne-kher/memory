@@ -172,27 +172,7 @@ class tabcarte
             $requete="INSERT INTO besttime (login,temps,points,level,defi,id_utilisateur,date) VALUES ('".$_SESSION['login']."','".$this->scorefinal['temps']."','".$pointstime."','".$this->lvl."','".$_SESSION['defi']."','".$_SESSION['id_utilisateur']."','".$d."') ";
             $query=mysqli_query($connexion,$requete);
             // echo ($requete).'<br/>'; 
-
-            ?><style>
-
-            @keyframes animationfinpartie{
-              0% {transform: translateY(0px);}
-              100%{transform: translateY(-785px);}
-            }
-
-            #animationfinpartie{
-              animation-name: animationfinpartie;
-              animation-duration :2s;
-              animation-timing-function :ease-out;
-              animation-delay :1s;
-              animation-fill-mode:forwards;
-            }
-
-            section{
-              position: relative;
-            }
-                        </style>
-                        <?php
+            
           }
 
           if($_SESSION['defi']=='Sans faute' and isset($_SESSION['login']))
@@ -243,7 +223,6 @@ class tabcarte
       //=$score['temps']; 
       //ajout amine
       date_default_timezone_set('Europe/Paris');
-       echo 'Le '.date('d-m-Y \à H:i:s').'<br/>';
 
       if($this->scorefinal['tentative']==0)
       {
@@ -316,7 +295,7 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
   <!-- <p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;?>
   </p>      -->
   <!-- VARIABLE NOMBRE DE TENTATIVE A RECUPERER POUR AFFICHAGE WALL OF FAME ******************************************* -->
-  <a href="index.php?end=true">Ressayer</a><br>
+  <br><a href="index.php?end=true">Ressayer</a>
   <a href="index.php?chang=true">Changer difficulter/Mode de jeu</a>
     </article>
     </section>
