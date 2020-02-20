@@ -116,15 +116,18 @@ class tabcarte
 
   	//afficher le coup (trouver un moyen de modiffier le table tabcar ) foreach //tour doit etres un tab qui indique si 1er ou deuxieme coup si deuxiem coup valeur du premeir coup 	//empecher de piocher deux fois de suitte la meme carte
   }
+
+
   public function tabprecedent()
   {
   	$this->tabcar=$this->tabcopie;
   }
+
+
   public function win()
   {
     if($this->cartrouve==$this->nbfam)
     {
-
 
 
     if($this->point=="p")
@@ -167,7 +170,7 @@ class tabcarte
 
             $requete="INSERT INTO besttime (login,temps,points,level,defi,id_utilisateur,date) VALUES ('".$_SESSION['login']."','".$this->scorefinal['temps']."','".$pointstime."','".$this->lvl."','".$_SESSION['defi']."','".$_SESSION['id_utilisateur']."','".$d."') ";
             $query=mysqli_query($connexion,$requete);
-            echo ($requete).'<br/>'; 
+            // echo ($requete).'<br/>'; 
           }
 
           if($_SESSION['defi']=='Sans faute' and isset($_SESSION['login']))
@@ -178,7 +181,7 @@ class tabcarte
 				$this->scorefinal['tentative']=1/$this->lvl;
 			}
           	$pointstentative=(1/$this->scorefinal['tentative'])*10*$this->lvl;
-         	$_SESSION['pointstentative']=$pointstentative;
+         	  $_SESSION['pointstentative']=$pointstentative;
             $pointstentative= number_format($pointstentative,1);
             ceil($pointstentative);
             $this->point=$pointstentative;
@@ -197,6 +200,8 @@ class tabcarte
 
 
     }
+    ?> <section > <?php
+
         /*
         else
         {
@@ -204,7 +209,9 @@ class tabcarte
           $_SESSION['nb_tentative']=1;
         }
         */
-
+        echo '<p class="text-memo">Level ='.$_SESSION['jeu']->lvl.'<br/>';
+        echo 'DEFI  = '.$_SESSION['defi'].'<br/>';
+        echo ' Nombre d\'erreur : '.$_SESSION['jeu']->nbtentative.'</p>';
       ?> 
       <h1 id="win">Winner</h1> 
       <p><?php
@@ -218,21 +225,23 @@ class tabcarte
       		echo '<br/>';
       		echo 'Félicitation !!! Vous avez fait un sans faute '.ucfirst($_SESSION['login']).' !!'.'<br/>';
       } ?> 
-  	  </p>            <!--  /* VARIABLE TEMPS A RECUPERER POUR WALL OF FAME*/k ****************************************** -->
+  	  </p>           
       <?php  //lancé ajout score, nouvelle partie
+
       
       echo 'Votre temps est de '.$this->scorefinal['temps'].' secondes !<br/>'; 
      // echo 'Nombre de coups : '.$this->scorefinal['tentative'].' !'.'<br/>';
       if($_SESSION['defi']=='Chrono')
       {
-        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/>';
+        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/><br/>';
       }
       else
       {
-        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/>';
+        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/><br/>';
 
       }
-    }//fermeture if win et fin modif amine
+    }
+    //fermeture if win et fin modif amine
 
   }
 }
@@ -272,21 +281,19 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 		$_SESSION['jeu']->jouer($_GET['jouer']);
 	}
 	$_SESSION['jeu']->afficher();//affiche le tableaux
-	?>
-	<article id="text-memo">
-  	<p>Level = <?=$_SESSION['jeu']->lvl ?><br/>
-  	   DEFI  = <?=$_SESSION['defi']?><br/>
-    </p>
+  ?>
+	<article id="animationfinpartie" class="text-memo">
   	<?php
   	$_SESSION['jeu']->win();
-  	
-  ?><p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;
-
   ?>
-  </p>     <!-- VARIABLE NOMBRE DE TENTATIVE A RECUPERER POUR AFFICHAGE WALL OF FAME ******************************************* -->
-  <a href="index.php?end=true">Ressayer</a>
-  <a href="index.php?chang=true">Changer difficulter/mode de jeu</a>
-  	</article>
+  <!-- <p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;?>
+  </p>      -->
+  <!-- VARIABLE NOMBRE DE TENTATIVE A RECUPERER POUR AFFICHAGE WALL OF FAME ******************************************* -->
+  <a href="index.php?end=true">Ressayer</a><br>
+  <a href="index.php?chang=true">Changer difficulter/Mode de jeu</a>
+    </article>
+    </section>
+    
   <?php
 }
 else
