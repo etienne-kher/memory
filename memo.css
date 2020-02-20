@@ -50,7 +50,7 @@ header
   margin:0 15%;
   height: 70vh;
   align-items: center;
-  background : url('img/back.png');
+  /* background : url('img/back.png'); */
   background-attachment: fixed;
   padding-top: 2%;
   padding-bottom: 2%;
