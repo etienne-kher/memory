@@ -300,6 +300,20 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 }
 else
 {
+  if(isset($_POST['envniv']))
+  {
+  	if(!isset($_SESSION['login']))
+  	{ ?>	
+  		<div class="err">Vous devez être <a href="connexion.php">connecté</a> pour jouer et enregistrer vos scores</div>
+  	 <?php	
+  	}
+  	else
+  	{
+  		$_SESSION['jeu']= new tabcarte($_POST['niv']);
+  		header("Location: index.php");
+  	}
+    
+  }
     //formulaire de lancement avec choix et if du post
   ?>
 <div id="jeu-div">
@@ -316,20 +330,7 @@ else
 </div>
   <?php
 
-  if(isset($_POST['envniv']))
-  {
-  	if(!isset($_SESSION['login']))
-  	{ ?>	
-  		<p class="err">Vous devez étres <a href="connexion.php">connécté</a> pour jouer et enregistrer vos scores</p>
-  	 <?php	
-  	}
-  	else
-  	{
-  		$_SESSION['jeu']= new tabcarte($_POST['niv']);
-  		header("Location: index.php");
-  	}
-    
-  }
+
     
 }
 if(isset($_POST['defi'])=='time'){
