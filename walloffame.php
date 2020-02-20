@@ -127,7 +127,16 @@ else{
         {
             $ligne[1] = number_format($ligne[1],2);
             $ligne[2] = number_format($ligne[2],1);
-            echo '<tr><td class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b> '.$ligne[2].'</b> secondes </td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+            if(isset($_SESSION['login'])&&$ligne[0]==$_SESSION['login'])
+            {
+            	
+
+            	echo '<tr><td class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b class="user">'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b> '.$ligne[2].'</b> secondes </td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+        	}
+        	else
+        	{
+        		echo '<tr><td class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b> '.$ligne[2].'</b> secondes </td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+        	}
             $n++;
         }  
        
@@ -219,13 +228,22 @@ else{
     $resultat0=mysqli_fetch_all($query0);
     //var_dump($resultat0);
     $n=1;
+
     echo '<tr><td class="thead">'.'#2'.'</td><td class="thead">'.'Pseudo'.'</td><td class="thead">'.'Moyenne COUPS'.'</td><td class="thead">Moyenne POINTS</td></tr>';
 
     foreach($resultat0 as $ligne)
     {
         $ligne[1] = number_format($ligne[1],2);
         $ligne[2] = number_format($ligne[2],1);
-        echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>'.$ligne[2].'</b> coups</td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+        if(isset($_SESSION['login'])&&$ligne[0]==$_SESSION['login'])
+        {
+        		
+        		echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b class="user">'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>'.$ligne[2].'</b> coups</td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+        }
+        else
+        {
+        	echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>'.$ligne[2].'</b> coups</td><td class="num1"><b> '.$ligne[1].'</b> pts '.'</td></tr>';
+        }
         $n++;
     }  
    
@@ -305,7 +323,7 @@ else{
 }
 
     $connexion=mysqli_connect('localhost','root','','memory');
-    $requete0="SELECT utilisateurs.login,SUM(besttime.points) + SUM(besttentative.points) FROM utilisateurs INNER JOIN besttime on utilisateurs.id=besttime.id_utilisateur INNER JOIN besttentative on utilisateurs.id=besttentative.id_utilisateur WHERE besttime.level='".$levelbis2."' AND besttentative.level='".$levelbis2."' GROUP by utilisateurs.login ORDER BY SUM(besttime.points) + SUM(besttentative.points) LIMIT 10 ";
+    $requete0="SELECT utilisateurs.login,SUM(besttime.points) + SUM(besttentative.points) FROM utilisateurs INNER JOIN besttime on utilisateurs.id=besttime.id_utilisateur INNER JOIN besttentative on utilisateurs.id=besttentative.id_utilisateur WHERE besttime.level='".$levelbis2."' AND besttentative.level='".$levelbis2."' GROUP by utilisateurs.login ORDER BY SUM(besttime.points) + SUM(besttentative.points) desc LIMIT 10 ";
     $query0=mysqli_query($connexion,$requete0);
     $resultat0=mysqli_fetch_all($query0);
 
@@ -314,8 +332,16 @@ else{
 
     foreach($resultat0 as $ligne)
     {
+
         $ligne[1] = number_format($ligne[1],2);
-        echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>Pts total </b><i>Chrono</i> + <b>Pts total </b><i>Sans-faute</i> </td><td class="num1"><b>'.$ligne[1].'</b> pts '.'</td></tr>';
+        if(isset($_SESSION['login'])&&$ligne[0]==$_SESSION['login'])
+        {       	
+			echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b class="user">'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>Pts total </b><i>Chrono</i> + <b>Pts total </b><i>Sans-faute</i> </td><td class="num1"><b>'.$ligne[1].'</b> pts '.'</td></tr>';
+        }
+        else
+        {
+			echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1">'.'<b>'.ucfirst($ligne[0]).'</b>'.'</td><td class="num1"><b>Pts total </b><i>Chrono</i> + <b>Pts total </b><i>Sans-faute</i> </td><td class="num1"><b>'.$ligne[1].'</b> pts '.'</td></tr>';	
+        }
         $n++;
     }  
    

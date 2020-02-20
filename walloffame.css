@@ -118,3 +118,7 @@ td{
   #menu-accordeon li:hover li {
     max-height: 15em;
   }
+  .user
+  {
+  	color:red;
+  }
