@@ -8,6 +8,8 @@ header
   background-color: #e68f8fd9;
   padding-top: 1%;
   padding-bottom: 1%;
+  border:4px black solid;
+
 }
 #ul-head
 {
@@ -15,7 +17,7 @@ header
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 4vh
+  font-size: 4vh;
 }
 .a-head
 {
@@ -45,6 +47,7 @@ header
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin:0 15%;
   height: 70vh;
   align-items: center;
   background : url('img/back.png');
@@ -56,13 +59,14 @@ header
 {
   border-radius: 10%;
   margin: 1%;
-  width: 10%;
-  height: 30%;
+  width: 150px;
+  height: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color:#ce84bfa3;
+  background-color:#ce84bfda;
   box-shadow: 3px 3px 20px #6a4040;
+  border:2px black solid;
   transition: transform;
   transition-duration: 0.8s;
 
@@ -73,7 +77,8 @@ header
 }
 .turn
 {
-  background-color: #6ee68c7a;
+  background-color: #6ee68cdc;
+  border:2px black solid;
 }
 .turn:hover
 {
@@ -90,22 +95,24 @@ img
   display: flex;
   width: 90%;
 }
-#text-memo
+.text-memo
 {
   background-color: #f900ba54;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2%;
-  padding-bottom: 2%;
+  margin-top:50px;
+  padding: 1.3px 3%;
   font-family: 'Odibee Sans', cursive;
   color: #46e3af;
   text-shadow: 1px 1px 3px black;
-  font-size: 2vw;
+  font-size: 2.5vw;
   text-align: center;
+  border:4px black solid;
+ 
 }
 
-#text-memo> p
+.text-memo> article.p
 {
   margin: 0;
   text-align: center;
@@ -114,7 +121,7 @@ img
   color: #46e3af;
   text-shadow: 1px 1px 3px black;
 }
-#text-memo>a
+.text-memo>a
 {
   color:#bffff3;
   text-decoration: none;
@@ -122,7 +129,7 @@ img
   transition-duration: 1s;
 }
 
-#text-memo>a:hover
+.text-memo>a:hover
 {
   color: gold;
 }
@@ -190,4 +197,24 @@ img
 {
   text-align: center;
   color:red;
+}
+
+
+
+
+@keyframes animationfinpartie{
+  0% {transform: translateY(0px);}
+  100%{transform: translateY(-785px);}
+}
+
+#animationfinpartie{
+  animation-name: animationfinpartie;
+  animation-duration :2s;
+  animation-timing-function :ease-out;
+  animation-delay :1s;
+  animation-fill-mode:forwards;
+}
+
+section{
+  position: relative;
 }
