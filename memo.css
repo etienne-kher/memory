@@ -102,7 +102,7 @@ img
   flex-direction: column;
   align-items: center;
   margin-top:50px;
-  padding: 0px 0px 53px 0px;
+  padding: 0px 0px 40px 0px;
   font-family: 'Odibee Sans', cursive;
   color: #46e3af;
   text-shadow: 1px 1px 3px black;
@@ -157,13 +157,13 @@ img
   justify-content: center;
   flex-direction: column;
   background-color: #ff71c1a8;
-  font-size: 5vw;
-  padding: 2%;
-  border-radius: 10px;
-  color: beige;
-  text-shadow: 1px 1px 3px black;
-  box-shadow: 2px 2px 6px black;
-  width: 30%;
+  font-size: 2vw;
+    padding: 1%;
+    border-radius: 10px;
+    color: beige;
+    text-shadow: 1px 1px 3px black;
+    box-shadow: 2px 2px 6px black;
+    width: 23%;
 
 } 
 #jeu-div > form > select,#jeu-div > form > input
@@ -201,11 +201,11 @@ img
 
 
 
-
+/* ANIMATION FIN DE PARTIE */
 @keyframes animationfinpartie{
   0% {transform: translateY(0px); background-color:hsl(#309, 31%, 85%);}
   99% { background-color:hsl(rgba(51, 0, 153, 0.496), 31%, 85%);}
-  100%{transform: translateY(-785px); background-color:hsla(20, 68%, 63%, 0.91);}
+  100%{transform: translateY(-785px); background-color:hsla(27, 100%, 75%, 0.917);}
 }
 
 #animationfinpartie{
@@ -216,6 +216,38 @@ img
   animation-fill-mode:forwards;
 }
 
-section{
-  position: relative;
+.section{
+  display: flex;
+  flex-direction: row;
+}
+
+.text {
+  animation: inherit;
+  padding:0px 0px 50px 0px;
+  border:4px;
+  border-radius:2em;
+}
+.background {
+  color: hsl(324, 70%, 45%);
+  animation: wheelHueColor 100s infinite;
+  background-color: currentColor;
+}
+
+@keyframes wheelHueColor {
+  0%,100% { background-color: rgb(255, 206, 206); }
+  33%      { background-color: hsl(0, 0%, 100%); }
+  66%      { background-color: rgb(255, 247, 92); }
+
+}
+
+.textprofil{
+  text-align: center;
+  font-size: x-large;
+  padding: 10px 30px 10px;
+  margin: 45px auto;
+  width: 450px;
+  height: 470px;
+  background-color: bisque;
+  border: 8px rgb(53, 2, 17) solid;
+  border-radius: 4em;
 }
