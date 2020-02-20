@@ -22,15 +22,17 @@
     text-decoration: none;
     font-size: 120%;
     font-family: 'Odibee Sans', cursive;
-    color: #ffe1ff;
+    color: #ffe1ff ;
     text-shadow: 2px 2px 3px black;
-    transition: letter-spacing;
-    transition-duration: 1s;
     text-transform: capitalize;
+    transition: letter-spacing ,border-bottom;
+    transition-duration: 1s;
+
   }
   .a-head:hover
   {
     letter-spacing: 1vh;
+    border-bottom: 1% solid ;
   }
   .body-jeu
   {
@@ -116,7 +118,15 @@
   {
     color:#bffff3;
     text-decoration: none;
+    transition: color;
+    transition-duration: 1s;
   }
+
+  #text-memo>a:hover
+  {
+    color: gold;
+  }
+
   #win
   {
     color: #ffe300;
@@ -129,7 +139,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 100vh;
   }
   #jeu-div > form  
   {
@@ -145,6 +155,8 @@
     border-radius: 10px;
     color: beige;
     text-shadow: 1px 1px 3px black;
+    box-shadow: 2px 2px 6px black;
+    width: 30%;
 
   } 
   #jeu-div > form > select,#jeu-div > form > input
