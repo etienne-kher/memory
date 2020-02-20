@@ -15,11 +15,11 @@
 table,tr,td{
     border:2px black solid;
     border-radius: 6px;
-    border:2px black solid;
+    border:2px rgb(0, 0, 0) solid;
 }
 
 table{
-    margin: 50px 10px 50px;
+    margin: 65px auto 0px;
     border-radius: 1em 1em 1em 1em;
     border:8px rgb(105, 97, 43)solid;
     background-color: rgb(0, 0, 0);
