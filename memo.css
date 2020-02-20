@@ -1,193 +1,193 @@
- @import url('https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap');
-  body
-  {
-    margin: 0;
-  }
-  header
-  {
-    background-color: #e68f8fd9;
-    padding-top: 1%;
-    padding-bottom: 1%;
-  }
-  #ul-head
-  {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 4vh
-  }
-  .a-head
-  {
-    text-decoration: none;
-    font-size: 120%;
-    font-family: 'Odibee Sans', cursive;
-    color: #ffe1ff ;
-    text-shadow: 2px 2px 3px black;
-    text-transform: capitalize;
-    transition: letter-spacing ,border-bottom;
-    transition-duration: 1s;
+@import url('https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap');
+body
+{
+  margin: 0;
+}
+header
+{
+  background-color: #e68f8fd9;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+#ul-head
+{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 4vh
+}
+.a-head
+{
+  text-decoration: none;
+  font-size: 120%;
+  font-family: 'Odibee Sans', cursive;
+  color: #ffe1ff ;
+  text-shadow: 2px 2px 3px black;
+  text-transform: capitalize;
+  transition: letter-spacing ,border-bottom;
+  transition-duration: 1s;
 
-  }
-  .a-head:hover
-  {
-    letter-spacing: 1vh;
-    border-bottom: 1% solid ;
-  }
-  .body-jeu
-  {
-    background: url('img/back.png');
-    background-attachment: fixed;
-    background-position: bottom;
-  }
-  .jeu
-  {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    height: 70vh;
-    align-items: center;
-    background : url('img/back.png');
-    background-attachment: fixed;
-    padding-top: 2%;
-    padding-bottom: 2%;
-  }
-  .div-carte
-  {
-    border-radius: 10%;
-    margin: 1%;
-    width: 10%;
-    height: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color:#ce84bfa3;
-    box-shadow: 3px 3px 20px #6a4040;
-    transition: transform;
-    transition-duration: 0.8s;
+}
+.a-head:hover
+{
+  letter-spacing: 1vh;
+  border-bottom: 1% solid ;
+}
+.body-jeu
+{
+  background: url('img/back.png');
+  background-attachment: fixed;
+  background-position: bottom;
+}
+.jeu
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  height: 70vh;
+  align-items: center;
+  background : url('img/back.png');
+  background-attachment: fixed;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.div-carte
+{
+  border-radius: 10%;
+  margin: 1%;
+  width: 10%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#ce84bfa3;
+  box-shadow: 3px 3px 20px #6a4040;
+  transition: transform;
+  transition-duration: 0.8s;
 
-  }
-  .noturn:hover
-  {
-    transform: rotateX(14deg) rotateY(-42deg) rotateZ(-1deg) scale(1.1);
-  }
-  .turn
-  {
-    background-color: #6ee68c7a;
-  }
-  .turn:hover
-  {
-    transform: scale(1.1);
-  }
-  img
-  {
-    width: 90%;
-    margin: auto;
-  }
-   .div-carte > a
-  {
-    align-items: center;
-    display: flex;
-    width: 90%;
-  }
-  #text-memo
-  {
-    background-color: #f900ba54;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-family: 'Odibee Sans', cursive;
-    color: #46e3af;
-    text-shadow: 1px 1px 3px black;
-    font-size: 2vw;
-    text-align: center;
-  }
+}
+.noturn:hover
+{
+  transform: rotateX(14deg) rotateY(-42deg) rotateZ(-1deg) scale(1.1);
+}
+.turn
+{
+  background-color: #6ee68c7a;
+}
+.turn:hover
+{
+  transform: scale(1.1);
+}
+img
+{
+  width: 90%;
+  margin: auto;
+}
+ .div-carte > a
+{
+  align-items: center;
+  display: flex;
+  width: 90%;
+}
+#text-memo
+{
+  background-color: #f900ba54;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-family: 'Odibee Sans', cursive;
+  color: #46e3af;
+  text-shadow: 1px 1px 3px black;
+  font-size: 2vw;
+  text-align: center;
+}
 
-  #text-memo> p
-  {
-    margin: 0;
-    text-align: center;
-    font-size: 3vh;
-    font-family: 'Odibee Sans', cursive;
-    color: #46e3af;
-    text-shadow: 1px 1px 3px black;
-  }
-  #text-memo>a
-  {
-    color:#bffff3;
-    text-decoration: none;
-    transition: color;
-    transition-duration: 1s;
-  }
+#text-memo> p
+{
+  margin: 0;
+  text-align: center;
+  font-size: 3vh;
+  font-family: 'Odibee Sans', cursive;
+  color: #46e3af;
+  text-shadow: 1px 1px 3px black;
+}
+#text-memo>a
+{
+  color:#bffff3;
+  text-decoration: none;
+  transition: color;
+  transition-duration: 1s;
+}
 
-  #text-memo>a:hover
-  {
-    color: gold;
-  }
+#text-memo>a:hover
+{
+  color: gold;
+}
 
-  #win
-  {
-    color: #ffe300;
-  }
+#win
+{
+  color: #ffe300;
+}
 
-  #jeu-div 
-  {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  #jeu-div > form  
-  {
-    font-family: 'Odibee Sans', cursive;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #ff71c1a8;
-    font-size: 5vw;
-    padding: 2%;
-    border-radius: 10px;
-    color: beige;
-    text-shadow: 1px 1px 3px black;
-    box-shadow: 2px 2px 6px black;
-    width: 30%;
+#jeu-div 
+{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#jeu-div > form  
+{
+  font-family: 'Odibee Sans', cursive;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #ff71c1a8;
+  font-size: 5vw;
+  padding: 2%;
+  border-radius: 10px;
+  color: beige;
+  text-shadow: 1px 1px 3px black;
+  box-shadow: 2px 2px 6px black;
+  width: 30%;
 
-  } 
-  #jeu-div > form > select,#jeu-div > form > input
-  {
-    font-family: 'Odibee Sans', cursive;
-    font-size: 3vw;
-    text-align: center;
-    border-radius: 10px;
-    margin-bottom: 2%;
-    margin-top: 2%;
-    padding: 1%;
-    border:none;
-    box-shadow: 2px 2px 3px black;
-  }
+} 
+#jeu-div > form > select,#jeu-div > form > input
+{
+  font-family: 'Odibee Sans', cursive;
+  font-size: 3vw;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  padding: 1%;
+  border:none;
+  box-shadow: 2px 2px 3px black;
+}
 
-  #jeu-div > form > input[type="submit"]
-  {
-    padding: 5%;
-    text-transform: uppercase;
-    background-color: bisque;
-    transition:  letter-spacing color;
-    transition-duration: 0.8s;
-  }
+#jeu-div > form > input[type="submit"]
+{
+  padding: 5%;
+  text-transform: uppercase;
+  background-color: bisque;
+  transition:  letter-spacing color;
+  transition-duration: 0.8s;
+}
 
-  #jeu-div > form > input[type="submit"]:hover
-  {
-    letter-spacing: 1vw;
-    color:red;
-  }
-  .err
-  {
-    text-align: center;
-    color:red;
-  }
+#jeu-div > form > input[type="submit"]:hover
+{
+  letter-spacing: 1vw;
+  color:red;
+}
+.err
+{
+  text-align: center;
+  color:red;
+}
