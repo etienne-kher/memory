@@ -255,13 +255,13 @@ img
 }
 
 .textaccro{
-  margin: 10px 150px 0px;
+  margin: 10px 25% 0px;
   text-align: center;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: bold;
   font-family: cursive;
-    color: #bc2e1e;
+    color:white;
     text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd;
-    color: #bc2e1e;
-    background: #edde9cb0;
+    background: #ffe5d4c8;
+    border-radius: 3em;
     }
