@@ -34,10 +34,10 @@ $n=1;
 <article class="textprofil">
     <h1>Informations</h1>
     <p> Il existe <b>deux modes</b> de jeu : <br>
-<b>"Chrono"</b> : Vous devez finir la partie le plus vite qu'il vous es possible de faire. <br>
+<b>"Chrono"</b> : Vous devez finir la partie le plus vite qu'il vous es possible de faire. <br><br>
 <b>"Sans-faute"</b> : Vous devez finir la partie en faisant le moins de coups possible. <br><br>
 Pour que vous puissiez être classé dans le <b>"Top 10 Best Total Points"</b>, vous devez jouer au moins une partie dans chaque modes de jeu que nous vous proposons. <br><br>
-Prêts pour tester votre rapidité et votre mémoire ? <a href="index.php?chang=true">c'est parti !</a> 
+Prêt à tester votre rapidité et votre mémoire ? <a href="index.php?chang=true">c'est parti !</a> 
 </p>
 </article>
 
@@ -125,7 +125,7 @@ Prêts pour tester votre rapidité et votre mémoire ? <a href="index.php?chang=
         $requete1="SELECT login,points,nb_tentative,date FROM besttentative WHERE level='".$level."' and login='".$_SESSION['login']."' ORDER BY points DESC";
         $query=mysqli_query($connexion,$requete1);
         $resultat1=mysqli_fetch_all($query);
-        // var_dump($resultat1);
+        //var_dump($resultat1);
         // echo $requete1.'<br/>';
         // echo 'Level = '.$level.'<br/>';
 
@@ -142,8 +142,9 @@ Prêts pour tester votre rapidité et votre mémoire ? <a href="index.php?chang=
 
         while($k<count($resultat1) and $n<=5){
             
-            echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1"><b> '.ucfirst($resultat1[0][0]).' -- '.$resultat1[$k][2].' coups : le '.$resultatlevel2[$k][3].' </b></td><td class="num1"><b>'.$resultat1[$k][1].'</b> pts '.'</td></tr>';
+            echo '<tr><td  class="num1">'.'N°<b>'.$n.'</b></td><td class="num1"><b> '.ucfirst($resultat1[0][0]).' -- '.$resultat1[$k][2].' coups : le '.$resultat1[$k][3].' </b></td><td class="num1"><b>'.$resultat1[$k][1].'</b> pts '.'</td></tr>';
             ++$n;
+            $k++;
         }
         if($k==count($resultat1)){
             echo '<tr><td  class="num1bis">'.'N°<b>'.$n.'</b></td><td class="num1bis">'.''.'</td><td class="num1bis">'.''.'</td></tr>';
