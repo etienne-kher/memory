@@ -215,7 +215,7 @@ class tabcarte
         echo 'Level ='.$_SESSION['jeu']->lvl.'<br/>';
         echo ' Nombre d\'erreur(s) = '.$_SESSION['jeu']->nbtentative.'</p>';
       ?> 
-      <h1 id="win"><?php echo 'Vous êtes un Winner '.$_SESSION['login'].' !</h1>';?> 
+      <h1 id="win"><?php echo 'Vous êtes un Winner '.ucfirst($_SESSION['login']).' !</h1>';?> 
       <p><?php
       //=$score['temps']; 
       //ajout amine
@@ -274,6 +274,10 @@ class tabcarte
 
 include('header.php');
 
+?>
+
+<?php
+
 if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 {
 
@@ -316,18 +320,18 @@ else
     //formulaire de lancement avec choix et if du post
   ?>
   <div class="textaccro">
-Vous êtes dans votre magasin favoris. <br> Mais vous avez oublié votre liste de courses... <br>
-Ne vous laissez pas abatre pour autant, nous allons travailler votre mémoire,<br> et vos réflexes pour pouvoir rentré chez vous <br>
-avec vos courses et à temps <br> Prêt ? c'est parti !
+Bienvenue <?php if(isset($_SESSION['login'])) echo ucfirst($_SESSION['login']); ?> ! Vous êtes dans votre magasin favoris. <br> Mais vous avez oublié votre liste de courses... <br>
+Ne vous laissez pas abatre pour autant, nous allons travailler votre mémoire,<br> ainsi que vos réflexes pour que vous puissiez rentrer chez vous <br>
+avec vos achats et le tout à temps ! <br> Ready !? 
 </div>
 <div id="jeu-div">
   <form method="post" action="index.php">
-    <label>Mode de jeu</label>
+    <label class="mod">Mode de jeu</label>
     <select name="defi" id="">
         <option type="text" name="time">Chrono<br>
         <option type="text" name="tentative">Sans faute<br>
     </select><br>
-    <label>Nombre de carte</label>
+    <label class="mod">Nombre de carte</label>
     <input type="number"  name="niv" placeholder="3" step="1" min="3" max="12" ><br>
     <input type="submit" name="envniv" value="jouer">
   </form>
