@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 20 fév. 2020 à 10:42
+-- Généré le :  ven. 21 fév. 2020 à 19:57
 -- Version du serveur :  5.7.26
--- Version de PHP :  7.2.18
+-- Version de PHP :  7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `memory`
 --
+CREATE DATABASE IF NOT EXISTS `memory` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `memory`;
 
 -- --------------------------------------------------------
 
@@ -67,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `besttentative` (
   `id_utilisateur` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=182 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=193 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `besttentative`
@@ -150,7 +152,18 @@ INSERT INTO `besttentative` (`Id`, `login`, `nb_tentative`, `level`, `points`, `
 (178, 'eti', 1, 1, 10, 'Sans faute', 13, '2020-02-20 03:08:27'),
 (179, 'eti', 2, 1, 5, 'Sans faute', 13, '2020-02-20 03:09:02'),
 (180, 'eti', 1, 1, 10, 'Sans faute', 13, '2020-02-20 03:09:58'),
-(181, 'eti', 3, 1, 3, 'Sans faute', 13, '2020-02-20 03:10:38');
+(181, 'eti', 3, 1, 3, 'Sans faute', 13, '2020-02-20 03:10:38'),
+(182, 'fini?', 2, 1, 5, 'Sans faute', 19, '2020-02-20 14:25:30'),
+(183, 'fini?', 4, 1, 3, 'Sans faute', 19, '2020-02-20 14:29:18'),
+(184, 'fini?', 2, 1, 5, 'Sans faute', 19, '2020-02-20 14:36:32'),
+(185, 'fini?', 3, 1, 3, 'Sans faute', 19, '2020-02-20 14:36:49'),
+(186, 'fini?', 2, 1, 5, 'Sans faute', 19, '2020-02-20 15:08:14'),
+(187, 'zz', 2, 1, 5, 'Sans faute', 20, '2020-02-21 12:43:18'),
+(188, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-21 12:44:10'),
+(189, 'zz', 2, 1, 5, 'Sans faute', 20, '2020-02-21 12:45:36'),
+(190, 'zz', 4, 1, 3, 'Sans faute', 20, '2020-02-21 12:58:40'),
+(191, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-21 13:14:58'),
+(192, 'zz', 5, 2, 4, 'Sans faute', 20, '2020-02-21 20:54:04');
 
 -- --------------------------------------------------------
 
@@ -169,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `besttime` (
   `id_utilisateur` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=787 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=822 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `besttime`
@@ -339,7 +352,42 @@ INSERT INTO `besttime` (`Id`, `login`, `temps`, `level`, `points`, `defi`, `id_u
 (783, 'hello', 96, 1, 0.1, 'Chrono', 17, '2020-02-20 09:00:09'),
 (784, 'hello', 32, 1, 0.3, 'Chrono', 17, '2020-02-20 10:05:33'),
 (785, 'hello', 12, 1, 0.8, 'Chrono', 17, '2020-02-20 10:37:45'),
-(786, 'aaa', 24, 1, 0.4, 'Chrono', 18, '2020-02-20 11:28:40');
+(786, 'aaa', 24, 1, 0.4, 'Chrono', 18, '2020-02-20 11:28:40'),
+(787, 'fini?', 8, 1, 1.3, 'Chrono', 19, '2020-02-20 13:52:58'),
+(788, 'fini?', 22, 1, 0.5, 'Chrono', 19, '2020-02-20 13:53:53'),
+(789, 'fini?', 34, 2, 0.6, 'Chrono', 19, '2020-02-20 14:38:43'),
+(790, 'fini?', 7, 1, 1.4, 'Chrono', 19, '2020-02-20 14:43:22'),
+(791, 'fini?', 11, 1, 0.9, 'Chrono', 19, '2020-02-20 14:52:16'),
+(792, 'fini?', 10, 1, 1, 'Chrono', 19, '2020-02-20 14:59:44'),
+(793, 'fini?', 15, 1, 0.7, 'Chrono', 19, '2020-02-20 15:37:47'),
+(794, 'fini?', 33, 1, 0.3, 'Chrono', 19, '2020-02-20 16:15:49'),
+(795, 'fini?', 782, 1, 0, 'Chrono', 19, '2020-02-20 16:36:21'),
+(796, 'fini?', 158, 1, 0.1, 'Chrono', 19, '2020-02-20 17:07:49'),
+(797, 'fini?', 9, 1, 1.1, 'Chrono', 19, '2020-02-20 17:12:45'),
+(798, 'fini?', 85, 1, 0.1, 'Chrono', 19, '2020-02-20 17:18:13'),
+(799, 'fini?', 14, 1, 0.7, 'Chrono', 19, '2020-02-20 17:21:56'),
+(800, 'fini?', 338, 1, 0, 'Chrono', 19, '2020-02-20 17:48:23'),
+(801, 'fini?', 995, 1, 0, 'Chrono', 19, '2020-02-20 18:30:32'),
+(802, 'fini?', 9, 1, 1.1, 'Chrono', 19, '2020-02-20 18:35:12'),
+(803, 'fini?', 11, 1, 0.9, 'Chrono', 19, '2020-02-20 21:36:37'),
+(804, 'fini?', 10, 1, 1, 'Chrono', 19, '2020-02-20 21:37:23'),
+(805, 'fini?', 20, 1, 0.5, 'Chrono', 19, '2020-02-20 23:37:27'),
+(806, 'fini?', 9, 1, 1.1, 'Chrono', 19, '2020-02-20 23:47:49'),
+(807, 'fini?', 7, 1, 1.4, 'Chrono', 19, '2020-02-20 23:48:47'),
+(808, 'zz', 15, 1, 0.7, 'Chrono', 20, '2020-02-21 12:30:07'),
+(809, 'zz', 16, 1, 0.6, 'Chrono', 20, '2020-02-21 12:39:13'),
+(810, 'zz', 10, 1, 1, 'Chrono', 20, '2020-02-21 12:39:33'),
+(811, 'zz', 11, 1, 0.9, 'Chrono', 20, '2020-02-21 15:28:41'),
+(812, 'zz', 429, 1, 0, 'Chrono', 20, '2020-02-21 15:35:59'),
+(813, 'zz', 13, 1, 0.8, 'Chrono', 20, '2020-02-21 15:41:27'),
+(814, 'zz', 79, 5, 0.6, 'Chrono', 20, '2020-02-21 15:46:26'),
+(815, 'zz', 552, 5, 0.1, 'Chrono', 20, '2020-02-21 16:12:01'),
+(816, 'zz', 12, 1, 0.8, 'Chrono', 20, '2020-02-21 16:30:56'),
+(817, 'zz', 21, 1, 0.5, 'Chrono', 20, '2020-02-21 16:31:41'),
+(818, 'zz', 8, 1, 1.3, 'Chrono', 20, '2020-02-21 17:07:42'),
+(819, 'zz', 45, 1, 0.2, 'Chrono', 20, '2020-02-21 17:10:00'),
+(820, 'zz', 7, 1, 1.4, 'Chrono', 20, '2020-02-21 17:11:38'),
+(821, 'zz', 22, 1, 0.5, 'Chrono', 20, '2020-02-21 20:55:15');
 
 -- --------------------------------------------------------
 
@@ -353,7 +401,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `login` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateurs`
@@ -374,7 +422,9 @@ INSERT INTO `utilisateurs` (`id`, `login`, `password`) VALUES
 (15, 'pp', '81a7a1ddae8e5826f775c565661d6968a6c604d957bf642dda071df848ea00db'),
 (16, 'O', 'a567f5e4c7eae9d67423af11f51fd1bafc31d84e37c964d6d345ecdaba1824eb'),
 (17, 'hello', '43f2aaac7105a740963bc3f59575fce8b56b333b59c1035e08cf9aa426ee83fc'),
-(18, 'aaa', '97affcb2edc02676282c8f5c2b301541596f7f930cbc368c8b6878f3861dac72');
+(18, 'aaa', '97affcb2edc02676282c8f5c2b301541596f7f930cbc368c8b6878f3861dac72'),
+(19, 'fini?', '97affcb2edc02676282c8f5c2b301541596f7f930cbc368c8b6878f3861dac72'),
+(20, 'zz', '83669d3e316b43ce4e7303947503f8f48550d5b1ea0d49c35a1bc64d42116af1');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
