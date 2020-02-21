@@ -8,7 +8,7 @@
 	<title>connexion</title>
 	<link rel="stylesheet" type="text/css" href="memo.css">
 </head>
-<body>
+<body class="bodyconnexion ">
 <?php 
 	include('header.php');
 	if(isset($_POST['conn'])&&!empty($_POST['login'])&&!empty($_POST['psw']))
@@ -23,18 +23,18 @@
 		}
 		else
 		{
-			$err="Erreur de mots de passe ou de login";
+			$err="<h3>Erreur de mot de passe ou de login</h3>";
 		}
 
 	}
 	
 ?>
 
-<section class="formco">
+<section class="formco frigo2">
 	<form action="connexion.php" method="post">
-		<label>Login </label><input type="text" name="login" required><br>
-		<label>Password </label><input type="password" name="psw" required><br>
-		<input type="submit" name="conn" value="Se connecter">
+		<label>Login </label><input class="inputform" type="text" name="login" required><br>
+		<label>Password </label><input class="inputform" type="password" name="psw" required><br>
+		<input class="inputformval" type="submit" name="conn" value="Se connecter">
 	</form>
 	</section>
 	<br>
