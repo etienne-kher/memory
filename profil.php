@@ -36,8 +36,8 @@ $n=1;
     <p> Il existe <b>deux modes</b> de jeu : <br>
 <b>"Chrono"</b> : Vous devez finir la partie le plus vite qu'il vous es possible de faire. <br><br>
 <b>"Sans-faute"</b> : Vous devez finir la partie en faisant le moins de coups possible. <br><br>
-Pour que vous puissiez être classé dans le <b>"Top 10 Best Total Points"</b>, vous devez jouer au moins une partie dans chaque modes de jeu que nous vous proposons. <br><br>
-Prêt à tester votre rapidité et votre mémoire ? <a href="index.php?chang=true">c'est parti !</a> 
+Pour être classé dans le <b>"Top 10 Best Total Points"</b>, vous devez jouer au moins une partie dans chaque modes de jeu que nous vous proposons. <br><br>
+Prêt à tester votre rapidité et votre mémoire ? <br><br> <a href="index.php?chang=true">==> Jouer <==</a> 
 </p>
 </article>
 

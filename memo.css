@@ -3,6 +3,17 @@ body
 {
   margin: 0;
 }
+
+#bodyinscription{
+  background-image: url("img/back1.jpg") ;
+  background-size: cover;
+}
+
+.bodyconnexion{
+  background-image: url("img/back1.jpg");
+  background-size: cover;
+}
+
 header
 {
   background-color: #e68f8fd9;
@@ -250,9 +261,13 @@ img
   width: 450px;
   height: 470px;
   background-color: bisque;
-  border: 8px rgb(53, 2, 17) solid;
   border-radius: 4em;
   font-family: cursive;
+  color: #FFFFFF;
+background: #333333;
+text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+-webkit-box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 5px 5px 15px 5px rgba(0,0,0,0); 
+box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
 .textaccro{
@@ -270,21 +285,42 @@ img
   /* FORMULAIRE INSCRIPTION CONNEXION */
   .formco{
     width: 400px;
-    height: 300px;
-    margin: 150px auto 0px;
+    height: auto;
+    margin: 14% auto 0%;
     border:2px black solid;
     background-color: rgba(255, 127, 80, 0.821);
     border-radius: 3em;
+    color: #FFFFFF;
+    background: #333333;
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, rgb(7, 0, 4) 0px 0px 20px, rgb(0, 0, 0) 0px 0px 30px, rgb(36, 5, 20) 0px 0px 40px, rgb(5, 0, 3) 0px 0px 50px, rgb(44, 8, 26) 0px 0px 75px;
+  
   }
 
   .formco2{
     width: 400px;
-    height: 385px;
-    margin: 150px auto 0px;
+    height: auto;
+    margin: 10% auto 0%;
     border:2px black solid;
-    background-color: rgba(255, 127, 80, 0.821);
     border-radius: 3em;
+    font-weight: bold;
+    color: #FFFFFF;
+    background: #333333;
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, rgb(7, 0, 4) 0px 0px 20px, rgb(0, 0, 0) 0px 0px 30px, rgb(36, 5, 20) 0px 0px 40px, rgb(5, 0, 3) 0px 0px 50px, rgb(44, 8, 26) 0px 0px 75px;
   }
+
+  .frigo1{
+    background-image: url("img/frigo.jpeg");
+    opacity: 0.9;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+    box-shadow: 5px 5px 15px 5px #000000;
+  }
+  .frigo2{
+    background-image: url("img/frigo.jpeg");
+    opacity: 0.9;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+    box-shadow: 5px 5px 15px 5px #000000;
+  }
+
   form{
     display: flex;
     flex-direction: column;
@@ -292,8 +328,20 @@ img
     margin:10% 25%;
     align-items: center;
     font-size: xx-large;
+    font-size: 2vw;
+
   }
 
   .mod{
     font-size: 60px;
+  }
+
+  .inputform{
+    font-size: xx-large;
+    text-align: center;
+  }
+  .inputformval{
+    font-size: xx-large;
+    text-align: center;
+    border-radius: 2em;
   }
