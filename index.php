@@ -220,13 +220,11 @@ class tabcarte
       //=$score['temps']; 
       //ajout amine
       date_default_timezone_set('Europe/Paris');
-
       if($this->scorefinal['tentative']==0)
       {
-      		echo '<br/>';
-      		echo 'Félicitation !!! Vous avez fait un sans faute '.ucfirst($_SESSION['login']).' !!'.'<br/>';
+      		echo 'Félicitation !!! Vous avez fait un sans faute '.ucfirst($_SESSION['login']).' !!';
       } ?> 
-  	  </p>           
+  	            
       <?php  //lancé ajout score, nouvelle partie
 
       
@@ -254,6 +252,7 @@ class tabcarte
 	retourner carte {si premier carte->tirer deuxieme; si deuxieme carte->(si juste ->laisser carte tourné ,si faux -> chrono + reactalisation des 2 cartes)}
 */
 ?>
+</p> 
 <!DOCTYPE html>
 <html>
 <head>
