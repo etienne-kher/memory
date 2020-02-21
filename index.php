@@ -289,7 +289,7 @@ if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
   ?>
 	<article <?php if($_SESSION['jeu']->point!="p"){ echo'id="animationfinpartie"'; } ?> class="text-memo">
   	<?php
-  	$_SESSION['jeu']->win();
+  	$_SESSION['jeu']->win(); 
   ?>
   <!-- <p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;?>
   </p>      -->

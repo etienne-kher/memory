@@ -3,7 +3,7 @@
 	include('fonction.php');
 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 	<title>inscription</title>
