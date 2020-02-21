@@ -29,15 +29,19 @@
 	}
 	
 ?>
+
+<section class="formco">
 	<form action="connexion.php" method="post">
-		<label>Login : </label><input type="text" name="login" required><br>
-		<label>Password : </label><input type="password" name="psw" required><br>
-		<input type="submit" name="conn">
+		<label>Login </label><input type="text" name="login" required><br>
+		<label>Password </label><input type="password" name="psw" required><br>
+		<input type="submit" name="conn" value="Se connecter">
 	</form>
+	</section>
+	<br>
 	<?php 
 		if (isset($err)) 
 		{ ?>
-			<div id="erreur"><?php echo $err; ?></div>
+			<div class="err"><?php echo $err; ?></div>
 		<?php			
 		}
 	?>
