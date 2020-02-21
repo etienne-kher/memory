@@ -47,7 +47,7 @@ header
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin:0 15%;
+  margin: -11px 15%;
   height: 70vh;
   align-items: center;
   /* background : url('img/back.png'); */
@@ -206,7 +206,7 @@ img
 @keyframes animationfinpartie{
   0% {transform: translateY(0px); background-color:hsl(#309, 31%, 85%);}
   99% { background-color:hsl(rgba(51, 0, 153, 0.496), 31%, 85%);}
-  100%{transform: translateY(-785px); background-color:hsla(27, 100%, 75%, 0.917);}
+  100%{transform: translateY(-765px); background-color:hsla(27, 100%, 75%, 0.917);}
 }
 
 #animationfinpartie{
@@ -257,7 +257,11 @@ img
 .textaccro{
   margin: 10px 150px 0px;
   text-align: center;
-  font-size: x-large;
+  font-size: 22px;
   font-weight: bold;
   font-family: cursive;
-}
+    color: #bc2e1e;
+    text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd;
+    color: #bc2e1e;
+    background: #edde9cb0;
+    }
