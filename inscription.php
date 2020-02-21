@@ -45,18 +45,20 @@
 	}
 	
 ?>
+<section class="formco2">
 <form action="inscription.php" method="post">
-	<label>Login : </label><input type="text" name="login" required><br>
-	<label>Password : </label><input type="password" name="psw" required><br>
-	<label>Confirmation : </label><input type="password" name="repsw" required><br>
-	<input type="submit" name="insc">
+	<label>Login </label><input type="text" name="login" required><br>
+	<label>Password </label><input type="password" name="psw" required><br>
+	<label>Confirmation </label><input type="password" name="repsw" required><br>
+	<input type="submit" name="insc" value="S'inscrire">
 </form>
 <?php 
 	if (isset($err)) 
-	{ ?>
-		<div id="erreur"><?php echo $err; ?></div>
+	{ ?><br>
+		<div class="err"><?php echo $err; ?></div>
 	<?php			
 	}
 ?>
+</section>
 </body>
 </html>
