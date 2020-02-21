@@ -46,9 +46,9 @@
 	
 ?>
 <form action="inscription.php" method="post">
-	<label>Login : </label><input type="text" name="login" required>
-	<label>Password : </label><input type="password" name="psw" required>
-	<label>Confirmation : </label><input type="password" name="repsw" required>
+	<label>Login : </label><input type="text" name="login" required><br>
+	<label>Password : </label><input type="password" name="psw" required><br>
+	<label>Confirmation : </label><input type="password" name="repsw" required><br>
 	<input type="submit" name="insc">
 </form>
 <?php 
