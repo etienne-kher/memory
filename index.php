@@ -316,6 +316,11 @@ else
   }
     //formulaire de lancement avec choix et if du post
   ?>
+  <div class="textaccro">
+Vous êtes dans votre magasin favoris. <br> Mais vous avez oublié votre liste de courses... <br>
+Ne vous laissez pas abatre pour autant, nous allons travailler votre mémoire,<br> et vos réflexes pour pouvoir rentré chez vous <br>
+avec vos courses et à temps <br> Prêt ? c'est parti !
+</div>
 <div id="jeu-div">
   <form method="post" action="index.php">
     <label>Mode de jeu</label>
