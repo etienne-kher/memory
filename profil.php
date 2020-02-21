@@ -32,7 +32,7 @@ $n=1;
 <section class="section">
 
 <article class="textprofil">
-    <h1>Informations</h1>
+    <h1>Le Jeu</h1>
     <p> Il existe <b>deux modes</b> de jeu : <br>
 <b>"Chrono"</b> : Vous devez finir la partie le plus vite qu'il vous es possible de faire. <br><br>
 <b>"Sans-faute"</b> : Vous devez finir la partie en faisant le moins de coups possible. <br><br>
@@ -158,16 +158,16 @@ Prêt à tester votre rapidité et votre mémoire ? <a href="index.php?chang=tru
 </table>
 
 <article class="textprofil">
-<h1>Informations</h1>
+<h1>Les Points</h1>
 <p>
 Le <b>calcul des points</b> se fait en fonction du level et du temps/nombre de coups : <br> Plus le level sera grand et plus le temps/nombre de coups sera faible, plus vous pouvez gagnerai de points.<br><br>
 Il y a une relation entre le nombre de cartes choisies en début de partie et le level du jeu : 
 <ul>
-    <li>Pour le <b>level 1</b> => 3 et 4 cartes.</li>
-    <li>Pour le <b>level 2</b> => 5 et 6 cartes.</li>
-    <li>Pour le <b>level 3</b> => 7 et 8 cartes.</li>
-    <li>Pour le <b>level 4</b> => 9 et 10 cartes.</li>
-    <li>Pour le <b>level 5</b> => 11 et 12 cartes.</li>
+    <li>Pour le <b>level 1</b> => 3 ou 4 cartes choisies.</li>
+    <li>Pour le <b>level 2</b> => 5 ou 6 cartes choisies.</li>
+    <li>Pour le <b>level 3</b> => 7 ou 8 cartes choisies.</li>
+    <li>Pour le <b>level 4</b> => 9 ou 10 cartes choisies.</li>
+    <li>Pour le <b>level 5</b> => 11 ou 12 cartes choisies.</li>
 </ul>
 
 </p>
