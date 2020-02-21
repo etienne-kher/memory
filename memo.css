@@ -146,12 +146,12 @@ img
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 60vh;
 }
 #jeu-div > form  
 {
   font-family: 'Odibee Sans', cursive;
-  margin: auto;
+  margin: 0px auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,7 +213,7 @@ img
   animation-name: animationfinpartie;
   animation-duration :2s;
   animation-timing-function :ease-out;
-  animation-delay :1s;
+  animation-delay :0s;
   animation-fill-mode:forwards;
 }
 
@@ -243,7 +243,7 @@ img
 
 .textprofil{
   text-align: center;
-  font-size: x-large;
+  font-size: 19px;
   padding: 10px 30px 10px;
   margin: 45px auto;
   width: 450px;
@@ -251,4 +251,13 @@ img
   background-color: bisque;
   border: 8px rgb(53, 2, 17) solid;
   border-radius: 4em;
+  font-family: cursive;
+}
+
+.textaccro{
+  margin: 10px 150px 0px;
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+  font-family: cursive;
 }
