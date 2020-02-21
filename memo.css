@@ -157,7 +157,7 @@ img
   justify-content: center;
   flex-direction: column;
   background-color: #ff71c1a8;
-  font-size: 2vw;
+  font-size: 1vw;
     padding: 1%;
     border-radius: 10px;
     color: beige;
@@ -197,7 +197,8 @@ img
 {
   text-align: center;
   color:red;
-  font-size: xx-large;
+  font-size: large;
+  font-weight: bold;
 }
 
 
@@ -260,8 +261,39 @@ img
   font-size: 23px;
   font-weight: bold;
   font-family: cursive;
-    color:white;
+    color:rgb(0, 0, 0);
     text-shadow: 0 1px 0px #378ab4, 1px 0 0px #5dabcd, 1px 2px 1px #378ab4, 2px 1px 1px #5dabcd;
     background: #ffe5d4c8;
     border-radius: 3em;
     }
+
+  /* FORMULAIRE INSCRIPTION CONNEXION */
+  .formco{
+    width: 400px;
+    height: 300px;
+    margin: 150px auto 0px;
+    border:2px black solid;
+    background-color: rgba(255, 127, 80, 0.821);
+    border-radius: 3em;
+  }
+
+  .formco2{
+    width: 400px;
+    height: 385px;
+    margin: 150px auto 0px;
+    border:2px black solid;
+    background-color: rgba(255, 127, 80, 0.821);
+    border-radius: 3em;
+  }
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin:10% 25%;
+    align-items: center;
+    font-size: xx-large;
+  }
+
+  .mod{
+    font-size: 60px;
+  }
