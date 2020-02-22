@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 21 fév. 2020 à 19:57
+-- Généré le :  sam. 22 fév. 2020 à 15:54
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.3.5
 
@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `besttentative` (
   `id_utilisateur` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=193 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=196 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `besttentative`
@@ -163,7 +163,10 @@ INSERT INTO `besttentative` (`Id`, `login`, `nb_tentative`, `level`, `points`, `
 (189, 'zz', 2, 1, 5, 'Sans faute', 20, '2020-02-21 12:45:36'),
 (190, 'zz', 4, 1, 3, 'Sans faute', 20, '2020-02-21 12:58:40'),
 (191, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-21 13:14:58'),
-(192, 'zz', 5, 2, 4, 'Sans faute', 20, '2020-02-21 20:54:04');
+(192, 'zz', 5, 2, 4, 'Sans faute', 20, '2020-02-21 20:54:04'),
+(193, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-21 23:57:31'),
+(194, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-22 00:23:49'),
+(195, 'zz', 3, 2, 7, 'Sans faute', 20, '2020-02-22 16:36:05');
 
 -- --------------------------------------------------------
 
@@ -182,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `besttime` (
   `id_utilisateur` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=822 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=834 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `besttime`
@@ -387,7 +390,19 @@ INSERT INTO `besttime` (`Id`, `login`, `temps`, `level`, `points`, `defi`, `id_u
 (818, 'zz', 8, 1, 1.3, 'Chrono', 20, '2020-02-21 17:07:42'),
 (819, 'zz', 45, 1, 0.2, 'Chrono', 20, '2020-02-21 17:10:00'),
 (820, 'zz', 7, 1, 1.4, 'Chrono', 20, '2020-02-21 17:11:38'),
-(821, 'zz', 22, 1, 0.5, 'Chrono', 20, '2020-02-21 20:55:15');
+(821, 'zz', 22, 1, 0.5, 'Chrono', 20, '2020-02-21 20:55:15'),
+(822, 'zz', 7, 1, 1.4, 'Chrono', 20, '2020-02-21 23:54:16'),
+(823, 'zz', 10, 1, 1, 'Chrono', 20, '2020-02-22 00:07:33'),
+(824, 'zz', 21, 1, 0.5, 'Chrono', 20, '2020-02-22 00:21:26'),
+(825, 'zz', 21, 1, 0.5, 'Chrono', 20, '2020-02-22 00:21:53'),
+(826, 'zz', 65, 2, 0.3, 'Chrono', 20, '2020-02-22 00:23:20'),
+(827, 'zz', 15, 1, 0.7, 'Chrono', 20, '2020-02-22 00:24:39'),
+(828, 'zz', 18, 1, 0.6, 'Chrono', 20, '2020-02-22 00:25:03'),
+(829, 'zz', 19, 1, 0.5, 'Chrono', 20, '2020-02-22 00:25:28'),
+(830, 'zz', 15, 1, 0.7, 'Chrono', 20, '2020-02-22 16:09:42'),
+(831, 'zz', 54, 5, 0.9, 'Chrono', 20, '2020-02-22 16:11:38'),
+(832, 'zz', 22, 2, 0.9, 'Chrono', 20, '2020-02-22 16:22:22'),
+(833, 'zz', 11, 1, 0.9, 'Chrono', 20, '2020-02-22 16:34:53');
 
 -- --------------------------------------------------------
 
