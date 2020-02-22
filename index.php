@@ -18,8 +18,7 @@ class tabcarte
   public  $refresh=false;//var reactualisation
   private $cartrouve=0;
   public $temp; //retient le temp unix du debut de partie
-  //
-  public $scorefinal;
+   public $scorefinal;
   public $point="p"; //nb de point à la fin
  function __construct($nb)
     {
@@ -116,15 +115,18 @@ class tabcarte
 
   	//afficher le coup (trouver un moyen de modiffier le table tabcar ) foreach //tour doit etres un tab qui indique si 1er ou deuxieme coup si deuxiem coup valeur du premeir coup 	//empecher de piocher deux fois de suitte la meme carte
   }
+
+
   public function tabprecedent()
   {
   	$this->tabcar=$this->tabcopie;
   }
+
+
   public function win()
   {
     if($this->cartrouve==$this->nbfam)
     {
-
 
 
     if($this->point=="p")
@@ -167,18 +169,21 @@ class tabcarte
 
             $requete="INSERT INTO besttime (login,temps,points,level,defi,id_utilisateur,date) VALUES ('".$_SESSION['login']."','".$this->scorefinal['temps']."','".$pointstime."','".$this->lvl."','".$_SESSION['defi']."','".$_SESSION['id_utilisateur']."','".$d."') ";
             $query=mysqli_query($connexion,$requete);
-            echo ($requete).'<br/>'; 
+            // echo ($requete).'<br/>'; 
+            
           }
 
           if($_SESSION['defi']=='Sans faute' and isset($_SESSION['login']))
           {
 			// CALCUL TOTAL POINTS DEFI SANS FAUTE
-			if($this->scorefinal['tentative']==0)
-			{
-				$this->scorefinal['tentative']=1/$this->lvl;
-			}
+            if($this->scorefinal['tentative']==0)
+            {
+              $this->scorefinal['tentative']=1/$this->lvl;
+            }
+
+      
           	$pointstentative=(1/$this->scorefinal['tentative'])*10*$this->lvl;
-         	$_SESSION['pointstentative']=$pointstentative;
+         	  $_SESSION['pointstentative']=$pointstentative;
             $pointstentative= number_format($pointstentative,1);
             ceil($pointstentative);
             $this->point=$pointstentative;
@@ -197,6 +202,8 @@ class tabcarte
 
 
     }
+    ?> <section > <?php
+
         /*
         else
         {
@@ -204,35 +211,36 @@ class tabcarte
           $_SESSION['nb_tentative']=1;
         }
         */
-
+        echo '<p class="text background"><br/>Mode de jeu  = '.$_SESSION['defi'].'<br/>';
+        echo 'Level ='.$_SESSION['jeu']->lvl.'<br/>';
+        echo ' Nombre d\'erreur(s) = '.$_SESSION['jeu']->nbtentative.'</p>';
       ?> 
-      <h1 id="win">Winner</h1> 
+      <h1 id="win"><?php echo 'Vous êtes un Winner '.ucfirst($_SESSION['login']).' !</h1>';?> 
       <p><?php
       //=$score['temps']; 
       //ajout amine
       date_default_timezone_set('Europe/Paris');
-       echo 'Le '.date('d-m-Y \à H:i:s').'<br/>';
-
       if($this->scorefinal['tentative']==0)
       {
-      		echo '<br/>';
-      		echo 'Félicitation !!! Vous avez fait un sans faute '.ucfirst($_SESSION['login']).' !!'.'<br/>';
+      		echo 'Félicitation !!! Vous avez fait un sans faute '.ucfirst($_SESSION['login']).' !!';
       } ?> 
-  	  </p>            <!--  /* VARIABLE TEMPS A RECUPERER POUR WALL OF FAME*/k ****************************************** -->
+  	            
       <?php  //lancé ajout score, nouvelle partie
+
       
       echo 'Votre temps est de '.$this->scorefinal['temps'].' secondes !<br/>'; 
      // echo 'Nombre de coups : '.$this->scorefinal['tentative'].' !'.'<br/>';
       if($_SESSION['defi']=='Chrono')
       {
-        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/>';
+        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/><br/>';
       }
       else
       {
-        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/>';
+        echo 'Vous gagnez '.$_SESSION['jeu']->point.' pts <br/><br/>';
 
       }
-    }//fermeture if win et fin modif amine
+    }
+    //fermeture if win et fin modif amine
 
   }
 }
@@ -244,11 +252,12 @@ class tabcarte
 	retourner carte {si premier carte->tirer deuxieme; si deuxieme carte->(si juste ->laisser carte tourné ,si faux -> chrono + reactalisation des 2 cartes)}
 */
 ?>
+</p> 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>memory</title>
-	<link rel="stylesheet" type="text/css" href="memo.css">
+  <link rel="stylesheet" type="text/css" href="memo.css"> 
 	<?php
 		if(isset($_GET['chrono'])) //refresh la page toute les 1s
 		{    
@@ -265,53 +274,40 @@ class tabcarte
 
 include('header.php');
 
+?>
+
+<?php
+
 if(isset($_SESSION['gamestrart'])&&isset($_SESSION['login']))
 {
+
 	if(isset($_GET['jouer']))
 	{
-		$_SESSION['jeu']->jouer($_GET['jouer']);
+    $_SESSION['jeu']->jouer($_GET['jouer']);
 	}
 	$_SESSION['jeu']->afficher();//affiche le tableaux
-	?>
-	<article id="text-memo">
-  	<p>Level = <?=$_SESSION['jeu']->lvl ?><br/>
-  	   DEFI  = <?=$_SESSION['defi']?><br/>
-    </p>
-  	<?php
-  	$_SESSION['jeu']->win();
-  	
-  ?><p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;
-
   ?>
-  </p>     <!-- VARIABLE NOMBRE DE TENTATIVE A RECUPERER POUR AFFICHAGE WALL OF FAME ******************************************* -->
-  <a href="index.php?end=true">Ressayer</a>
-  <a href="index.php?chang=true">Changer difficulter/mode de jeu</a>
-  	</article>
+	<article <?php if($_SESSION['jeu']->point!="p"){ echo'id="animationfinpartie"'; } ?> class="text-memo">
+  	<?php
+  	$_SESSION['jeu']->win(); 
+  ?>
+  <!-- <p> Nombre d'erreur : <?php echo $_SESSION['jeu']->nbtentative;?>
+  </p>      -->
+  <!-- VARIABLE NOMBRE DE TENTATIVE A RECUPERER POUR AFFICHAGE WALL OF FAME ******************************************* -->
+  <a href="index.php?end=true">Ressayer</a><br>
+  <a href="index.php?chang=true">Changer difficulter/Mode de jeu</a>
+    </article>
+    </section>
+    
   <?php
 }
 else
 {
-    //formulaire de lancement avec choix et if du post
-  ?>
-<div id="jeu-div">
-  <form method="post" action="index.php">
-    <label>Mode de jeu</label>
-    <select name="defi" id="">
-        <option type="text" name="time">Chrono<br>
-        <option type="text" name="tentative">Sans faute<br>
-    </select><br>
-    <label>Nombre de carte</label>
-    <input type="number"  name="niv" placeholder="3" step="1" min="3" max="12" ><br>
-    <input type="submit" name="envniv" value="jouer">
-  </form>
-</div>
-  <?php
-
   if(isset($_POST['envniv']))
   {
   	if(!isset($_SESSION['login']))
   	{ ?>	
-  		<p class="err">Vous devez étres <a href="connexion.php">connécté</a> pour jouer et enregistrer vos scores</p>
+  		<div class="err">Vous devez être <a href="connexion.php">connecté</a> pour jouer et enregistrer vos scores</div>
   	 <?php	
   	}
   	else
@@ -321,6 +317,28 @@ else
   	}
     
   }
+    //formulaire de lancement avec choix et if du post
+  ?>
+  <div class="textaccro">
+Bienvenue <?php if(isset($_SESSION['login'])) echo ucfirst($_SESSION['login']); ?> ! Vous êtes dans votre magasin favoris. <br> Mais vous avez oublié votre liste de courses... <br>
+Ne vous laissez pas abatre pour autant, nous allons travailler votre mémoire,<br> ainsi que vos réflexes pour que vous puissiez rentrer chez vous <br>
+avec vos achats et le tout à temps ! <br> Ready !? 
+</div>
+<div id="jeu-div">
+  <form method="post" action="index.php">
+    <label class="mod">Mode de jeu</label>
+    <select name="defi" id="">
+        <option type="text" name="time">Chrono<br>
+        <option type="text" name="tentative">Sans faute<br>
+    </select><br>
+    <label class="mod">Nombre de carte</label>
+    <input type="number"  name="niv" placeholder="3" step="1" min="3" max="12" ><br>
+    <input type="submit" name="envniv" value="jouer">
+  </form>
+</div>
+  <?php
+
+
     
 }
 if(isset($_POST['defi'])=='time'){
