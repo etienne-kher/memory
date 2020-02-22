@@ -326,6 +326,7 @@ else{
     $requete0="SELECT utilisateurs.login,SUM(besttime.points) + SUM(besttentative.points) FROM utilisateurs INNER JOIN besttime on utilisateurs.id=besttime.id_utilisateur INNER JOIN besttentative on utilisateurs.id=besttentative.id_utilisateur WHERE besttime.level='".$levelbis2."' AND besttentative.level='".$levelbis2."' GROUP by utilisateurs.login ORDER BY SUM(besttime.points) + SUM(besttentative.points) desc LIMIT 10 ";
     $query0=mysqli_query($connexion,$requete0);
     $resultat0=mysqli_fetch_all($query0);
+    // echo $requete0;
 
     $n=1;
     echo '<tr><td class="thead">'.'#3'.'</td><td class="thead">'.'Pseudo'.'</td><td class="thead">'.'CALCUL'.'</td><td class="thead">Total POINTS</td></tr>';
