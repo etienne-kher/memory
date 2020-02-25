@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 22 fév. 2020 à 15:54
+-- Généré le :  mar. 25 fév. 2020 à 15:06
 -- Version du serveur :  5.7.26
--- Version de PHP :  7.3.5
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -27,34 +27,6 @@ USE `memory`;
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bestscore`
---
-
-DROP TABLE IF EXISTS `bestscore`;
-CREATE TABLE IF NOT EXISTS `bestscore` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(25) NOT NULL,
-  `level` int(25) NOT NULL,
-  `chronoptstotal` int(25) NOT NULL,
-  `sansfauteptstotal` int(25) NOT NULL,
-  `pointstotalall` int(11) NOT NULL,
-  `id_utilisateur` int(11) NOT NULL,
-  PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `bestscore`
---
-
-INSERT INTO `bestscore` (`Id`, `login`, `level`, `chronoptstotal`, `sansfauteptstotal`, `pointstotalall`, `id_utilisateur`) VALUES
-(2, 'jacques', 2, 892, 26, 1340, 7),
-(3, 'robert', 2, 0, 0, 24, 5),
-(5, 'robert', 3, 0, 0, 87, 5),
-(7, 'amine', 2, 79, 256, 155, 4);
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `besttentative`
 --
 
@@ -69,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `besttentative` (
   `id_utilisateur` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=196 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=195 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `besttentative`
@@ -164,9 +136,8 @@ INSERT INTO `besttentative` (`Id`, `login`, `nb_tentative`, `level`, `points`, `
 (190, 'zz', 4, 1, 3, 'Sans faute', 20, '2020-02-21 12:58:40'),
 (191, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-21 13:14:58'),
 (192, 'zz', 5, 2, 4, 'Sans faute', 20, '2020-02-21 20:54:04'),
-(193, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-21 23:57:31'),
-(194, 'zz', 1, 1, 10, 'Sans faute', 20, '2020-02-22 00:23:49'),
-(195, 'zz', 3, 2, 7, 'Sans faute', 20, '2020-02-22 16:36:05');
+(193, 'zap', 3, 1, 3, 'Sans faute', 21, '2020-02-24 16:37:49'),
+(194, 'zap', 6, 2, 3, 'Sans faute', 21, '2020-02-25 13:29:03');
 
 -- --------------------------------------------------------
 
@@ -185,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `besttime` (
   `id_utilisateur` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM AUTO_INCREMENT=834 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=826 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `besttime`
@@ -391,18 +362,10 @@ INSERT INTO `besttime` (`Id`, `login`, `temps`, `level`, `points`, `defi`, `id_u
 (819, 'zz', 45, 1, 0.2, 'Chrono', 20, '2020-02-21 17:10:00'),
 (820, 'zz', 7, 1, 1.4, 'Chrono', 20, '2020-02-21 17:11:38'),
 (821, 'zz', 22, 1, 0.5, 'Chrono', 20, '2020-02-21 20:55:15'),
-(822, 'zz', 7, 1, 1.4, 'Chrono', 20, '2020-02-21 23:54:16'),
-(823, 'zz', 10, 1, 1, 'Chrono', 20, '2020-02-22 00:07:33'),
-(824, 'zz', 21, 1, 0.5, 'Chrono', 20, '2020-02-22 00:21:26'),
-(825, 'zz', 21, 1, 0.5, 'Chrono', 20, '2020-02-22 00:21:53'),
-(826, 'zz', 65, 2, 0.3, 'Chrono', 20, '2020-02-22 00:23:20'),
-(827, 'zz', 15, 1, 0.7, 'Chrono', 20, '2020-02-22 00:24:39'),
-(828, 'zz', 18, 1, 0.6, 'Chrono', 20, '2020-02-22 00:25:03'),
-(829, 'zz', 19, 1, 0.5, 'Chrono', 20, '2020-02-22 00:25:28'),
-(830, 'zz', 15, 1, 0.7, 'Chrono', 20, '2020-02-22 16:09:42'),
-(831, 'zz', 54, 5, 0.9, 'Chrono', 20, '2020-02-22 16:11:38'),
-(832, 'zz', 22, 2, 0.9, 'Chrono', 20, '2020-02-22 16:22:22'),
-(833, 'zz', 11, 1, 0.9, 'Chrono', 20, '2020-02-22 16:34:53');
+(822, 'zap', 19, 1, 0.5, 'Chrono', 21, '2020-02-24 16:36:11'),
+(823, 'zap', 32, 2, 0.6, 'Chrono', 21, '2020-02-25 13:28:02'),
+(824, 'zap', 37, 2, 0.5, 'Chrono', 21, '2020-02-25 13:30:33'),
+(825, 'zap', 18, 2, 1.1, 'Chrono', 21, '2020-02-25 13:32:04');
 
 -- --------------------------------------------------------
 
@@ -416,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `login` varchar(25) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateurs`
@@ -439,7 +402,8 @@ INSERT INTO `utilisateurs` (`id`, `login`, `password`) VALUES
 (17, 'hello', '43f2aaac7105a740963bc3f59575fce8b56b333b59c1035e08cf9aa426ee83fc'),
 (18, 'aaa', '97affcb2edc02676282c8f5c2b301541596f7f930cbc368c8b6878f3861dac72'),
 (19, 'fini?', '97affcb2edc02676282c8f5c2b301541596f7f930cbc368c8b6878f3861dac72'),
-(20, 'zz', '83669d3e316b43ce4e7303947503f8f48550d5b1ea0d49c35a1bc64d42116af1');
+(20, 'zz', '83669d3e316b43ce4e7303947503f8f48550d5b1ea0d49c35a1bc64d42116af1'),
+(21, 'zap', '83669d3e316b43ce4e7303947503f8f48550d5b1ea0d49c35a1bc64d42116af1');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
