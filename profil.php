@@ -33,11 +33,10 @@ $n=1;
 
 <article class="textprofil">
     <h1>Le Jeu</h1>
-    <p> Il existe <b>deux modes</b> de jeu : <br>
+    <p> Il existe <b>deux modes</b> de jeu : <br><br>
 <b>"Chrono"</b> : Vous devez finir la partie le plus vite qu'il vous es possible de faire. <br><br>
 <b>"Sans-faute"</b> : Vous devez finir la partie en faisant le moins de coups possible. <br><br>
-Pour être classé dans le <b>"Top 10 Best Total Points"</b>, vous devez jouer au moins une partie dans chaque modes de jeu que nous vous proposons. <br><br>
-Prêt à tester votre rapidité et votre mémoire ? <br><br> <a href="index.php?chang=true">==> Jouer <==</a> 
+Prêt à tester votre rapidité et votre mémoire ? <br><br> <a href="index.php?chang=true"><h1>==> Jouer <==</h1></a> 
 </p>
 </article>
 

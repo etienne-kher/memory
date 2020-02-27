@@ -29,6 +29,7 @@ header
   align-items: center;
   justify-content: space-around;
   font-size: 4vh;
+  padding:0;
 }
 .a-head
 {
@@ -271,8 +272,7 @@ box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 
 }
 
 .textaccro{
-  margin: 10px 25% 0px;
-  margin-top: 2%;
+  margin: 10px 25% -20px;
   text-align: center;
   font-size: 23px;
   font-weight: bold;
